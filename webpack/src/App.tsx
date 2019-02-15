@@ -1,6 +1,6 @@
 import React from 'react';
 
-const title = 'My Minimal React Webpack Babel Setup';
+const title: string = 'My Minimal React Webpack Babel Setup 39';
 
 const App = () => <div>{title}</div>
 
