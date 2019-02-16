@@ -9,7 +9,7 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader']
       }, {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
             "style-loader", // creates style nodes from JS strings
             "css-loader", // translates CSS into CommonJS
