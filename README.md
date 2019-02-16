@@ -13,5 +13,4 @@
 - `dist/`
 
 - `.editorconfig`
-- `eslintrc.js`
 - `tsconfig.json`
