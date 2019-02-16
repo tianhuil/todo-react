@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "webpack --config ./webpack.config.js --mode production",
-    "live-server": "./node_modules/.bin/live-server --port=5000 dist"
+    "live-server": "./node_modules/.bin/live-server --port=5000 dist",
+    "lint": "tslint -p tslint.json"
   },
   "author": "",
   "license": "ISC",
@@ -36,6 +37,8 @@
     "react-hot-loader": "^4.6.5",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3",
     "webpack": "^4.29.4",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
