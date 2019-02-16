@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-module.exports = {
+var config = {
   entry: './src/index.tsx',
   module: {
     rules: [
@@ -34,3 +34,12 @@ module.exports = {
     hot: true
   }
 };
+
+module.exports = (env, argv) => {
+  if (argv.model ==='development') {
+    // If too slow, try eval
+    config.devtool = 'cheap-eval-source-map';
+  }
+
+  return config;
+}
