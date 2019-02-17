@@ -1,4 +1,5 @@
-const webpack = require('webpack');
+const webpack           = require('webpack'),
+      HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var config = {
   entry: './src/index.tsx',
@@ -15,7 +16,7 @@ var config = {
             "css-loader", // translates CSS into CommonJS
             "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
-      }
+      },
     ]
   },
   resolve: {
@@ -30,15 +31,18 @@ var config = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: './dist',
-    hot: true
-  }
+    contentBase: './dist'
+  },
+  plugins: [new HtmlWebpackPlugin({
+      template: 'src/index.html'
+  })]
 };
 
 module.exports = (env, argv) => {
   if (argv.model ==='development') {
     // If too slow, try eval
     config.devtool = 'cheap-eval-source-map';
+    config.plugins.push(new webpack.HotModuleReplacementPlugin())
   }
 
   return config;
