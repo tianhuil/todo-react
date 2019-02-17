@@ -27,9 +27,6 @@ var config = {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
   devServer: {
     contentBase: './dist'
   },
@@ -40,11 +37,11 @@ var config = {
 };
 
 module.exports = (env, argv) => {
-  if (argv.model ==='development') {
+  if (argv.mode ==='development') {
     // If too slow, try eval
     config.devtool = 'cheap-eval-source-map';
-    config.plugins.push(new webpack.HotModuleReplacementPlugin())
   }
+
 
   return config;
 }
