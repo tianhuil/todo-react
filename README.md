@@ -12,5 +12,6 @@
 - `src/`
 - `dist/`
 
+## Optional files
 - `.editorconfig`
 - `tsconfig.json`
