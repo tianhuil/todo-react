@@ -2,7 +2,7 @@
 
 A simple typescript react starter for webpack.  Works well for starter pages that can be hosted on github.
 
-## Using the Starter
+## Getting Started
 To use the starer:
 
 1. [Fork your own copy of the repo](https://help.github.com/articles/fork-a-repo/) and clone your copy:
@@ -28,7 +28,7 @@ To use the starer:
 ```
 7. You can then host your results [on github as a static page](https://pages.github.com/).
 
-## Alternative:
+## Another way to Get Started:
 Copy and paste the following files / directories into your new repo:
 - `package.json`
 - `webpack.config.js`
