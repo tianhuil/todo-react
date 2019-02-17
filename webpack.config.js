@@ -38,10 +38,15 @@ var config = {
 
 module.exports = (env, argv) => {
   if (argv.mode ==='development') {
+    config.mode = 'development';
     // If too slow, try eval
     config.devtool = 'cheap-eval-source-map';
   }
 
+  if (argv.mode === 'production') {
+    config.mode = 'production';
+    config.devtool == undefined;
+  }
 
   return config;
 }

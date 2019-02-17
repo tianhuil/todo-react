@@ -3,7 +3,7 @@
     "jsx": "react",
     "lib": ["es6", "dom"],
     "rootDir": "src",
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es5",
     "lib": ["es6", "dom"],
     "sourceMap": true,
