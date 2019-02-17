@@ -22,11 +22,11 @@ To use the starer:
   ```bash
   > npm build
   ```
-You can optionally host the production build by running
+6. You can optionally host the production build by running
 ```bash
 > npm run live-server
 ```
-You can then host your results [on github as a static page](https://pages.github.com/).
+7. You can then host your results [on github as a static page](https://pages.github.com/).
 
 ## The important files
 - `package.json`
