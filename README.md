@@ -38,6 +38,7 @@ Copy and paste the following files / directories into your new repo:
 Optionally copy the following files
 - `.editorconfig`
 - `tsconfig.json`
+- `tslint.json`
 
 ## Credit:
 - [This article](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/#webpack-react-setup) forms the basis and provides support for webpack, babel, react, hot module replacement, and the general setup under `src/` and `dist/`.
