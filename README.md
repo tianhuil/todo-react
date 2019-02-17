@@ -1,4 +1,4 @@
-# webpack
+# Webpack React Typescript Starter
 
 ## Origins
 - [This article](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/#webpack-react-setup) forms the basis and provides support for webpack, babel, react, hot module replacement, and the general setup under `src/` and `dist/`.
