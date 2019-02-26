@@ -1,6 +1,6 @@
-# Webpack React Typescript Starter
+# Todo App in React
 
-A simple typescript react starter for webpack.  Works well for starter pages that can be hosted on github.
+A simple typescript todo react app.
 
 ## Getting Started
 To use the starer:
@@ -28,21 +28,7 @@ To use the starer:
 ```
 7. You can then host your results [on github as a static page](https://pages.github.com/).
 
-## Another way to Get Started:
-Copy and paste the following files / directories into your new repo:
-- `package.json`
-- `webpack.config.js`
-- `src/`
-- `dist/`
 
-Optionally copy the following files
-- `.editorconfig`
-- `tsconfig.json`
-- `tslint.json`
-
-## Credit:
-- [This article](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/#webpack-react-setup) forms the basis and provides support for webpack, babel, react, hot module replacement, and the general setup under `src/` and `dist/`.
-- Used [this README](https://github.com/Microsoft/TypeScript-Babel-Starter) to configure babel typescript.
-- The [following SO article](https://stackoverflow.com/questions/36510627/cant-import-typescript-modules-without-providing-the-file-extension) explains how to import from tsx by setting the correct order of the resolve field in `webpack.config.js`.
-- [This article](https://medium.com/a-beginners-guide-for-webpack-2/using-sass-9f52e447c5ae) and [the sass-loader README](https://github.com/webpack-contrib/sass-loader) define how to load `scss` files.
+## Credits:
+- Based on [this starter repo](https://github.com/tianhuil/webpack-react-typescript-starter).
 
