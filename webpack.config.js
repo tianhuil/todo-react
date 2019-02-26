@@ -30,7 +30,13 @@ module.exports = (env, argv) => {
             "css-loader", // translates CSS into CommonJS
             "sass-loader" // compiles Sass to CSS, using Node Sass by default
           ]
-        },
+        }, {
+          test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+          use: {
+            loader: 'url-loader?limit=100000',
+            options: {}
+          }
+        }
       ]
     },
     resolve: {
