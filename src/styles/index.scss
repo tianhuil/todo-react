@@ -1,3 +1,23 @@
-.text {
-  color: red;
+html {
+	/* 1 rem = 24px */
+	font-size: 150%;
+	font-family: sans-serif;
+}
+
+.title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: 2rem;
+  line-height: 3rem;
+  padding: 0;
+  margin: 1rem;
+}
+
+.subtitle {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 3rem;
+  padding: 0;
+  margin: 1rem;
 }
