@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
+import AppComp from "./components/App";
 import "./styles/index.scss";
 
 ReactDOM.render(
   <React.Fragment>
-    <App/>
+    <AppComp/>
   </React.Fragment>,
   document.getElementById("app"),
 );

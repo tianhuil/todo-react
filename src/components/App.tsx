@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "./Header"
-import TodoList from "./TodoList"
+import HeaderComp from "./Header"
+import TodoListComp from "./TodoList"
 
-const App = () => <React.Fragment>
-  <Header/>
-  <TodoList/>
+const AppComp = () => <React.Fragment>
+  <HeaderComp/>
+  <TodoListComp/>
 </React.Fragment>
 
-export default App;
+export default AppComp;

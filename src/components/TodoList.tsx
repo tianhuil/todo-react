@@ -4,7 +4,7 @@ import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/s
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 
-import NewTodo from './NewTodo';
+import NewTodoComp from './NewTodo';
 import TodoComp from './Todo';
 import { Todo } from '../types';
 
@@ -39,12 +39,12 @@ const todos: Todo[] = [
   { id: 2, text: "Praesentium aut ducimus quia id corporis eaque asperiores ut tempore sit in.", completed: true },
 ]
 
-function TodoList(props: Props) {
+function TodoListComp(props: Props) {
   const { classes } = props;
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
-        <NewTodo/>
+        <NewTodoComp/>
         <List dense className={classes.list}>
           {todos.map(todo => <TodoComp todo={todo}></TodoComp>)}
         </List>
@@ -54,8 +54,8 @@ function TodoList(props: Props) {
   );
 }
 
-TodoList.propTypes = {
+TodoListComp.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles)(TodoList);
+export default withStyles(styles)(TodoListComp);

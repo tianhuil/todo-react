@@ -63,7 +63,7 @@ const styles = (theme: Theme) => {
 
 export interface Props extends WithStyles<typeof styles> {}
 
-function Header(props: Props) {
+function HeaderComp(props: Props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -87,8 +87,8 @@ function Header(props: Props) {
   );
 }
 
-Header.propTypes = {
+HeaderComp.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(HeaderComp);
