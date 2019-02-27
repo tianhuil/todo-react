@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
 
 import NewTodo from './NewTodo';
+import TodoComp from './Todo';
+import { Todo } from '../types';
 
 const styles = (theme: Theme) => createStyles({
   container: {
@@ -21,10 +23,21 @@ const styles = (theme: Theme) => createStyles({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  list: {
+    width: '100%',
+    maxWidth: 500,
+    backgroundColor: theme.palette.background.paper,
+    marginBottom: theme.spacing.unit * 4
   }
 })
 
 export interface Props extends WithStyles<typeof styles> {}
+
+const todos: Todo[] = [
+  { id: 1, text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ", completed: false },
+  { id: 2, text: "Praesentium aut ducimus quia id corporis eaque asperiores ut tempore sit in.", completed: true },
+]
 
 function TodoList(props: Props) {
   const { classes } = props;
@@ -32,9 +45,9 @@ function TodoList(props: Props) {
     <div className={classes.container}>
       <Paper className={classes.paper}>
         <NewTodo/>
-        <Typography variant="h1">
-          Foo
-        </Typography>
+        <List dense className={classes.list}>
+          {todos.map(todo => <TodoComp todo={todo}></TodoComp>)}
+        </List>
       </Paper>
     </div>
 
