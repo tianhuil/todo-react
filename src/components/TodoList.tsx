@@ -4,6 +4,8 @@ import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/s
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import NewTodo from './NewTodo';
+
 const styles = (theme: Theme) => createStyles({
   container: {
     display: 'flex',
@@ -14,7 +16,11 @@ const styles = (theme: Theme) => createStyles({
     [theme.breakpoints.up('sm')]: {
       margin: theme.spacing.unit * 4,
       width: 600,
-    }
+    },
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 
@@ -25,6 +31,7 @@ function TodoList(props: Props) {
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
+        <NewTodo/>
         <Typography variant="h1">
           Foo
         </Typography>
