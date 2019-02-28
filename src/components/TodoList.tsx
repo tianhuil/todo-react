@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -6,7 +7,7 @@ import List from '@material-ui/core/List';
 
 import NewTodoComp from './NewTodo';
 import TodoComp from './Todo';
-import { Todo } from '../types';
+import { State } from "../store/";
 
 const styles = (theme: Theme) => createStyles({
   container: {
@@ -32,21 +33,23 @@ const styles = (theme: Theme) => createStyles({
   }
 })
 
-export interface Props extends WithStyles<typeof styles> {}
+const mapState = (state: State) => ({
+  todoIds: state.todo.allIds,
+})
 
-const todos: Todo[] = [
-  { id: 1, text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ", completed: false },
-  { id: 2, text: "Praesentium aut ducimus quia id corporis eaque asperiores ut tempore sit in.", completed: true },
-]
+export interface Props extends
+  WithStyles<typeof styles>,
+  ReturnType<typeof mapState> {
+}
 
 function TodoListComp(props: Props) {
-  const { classes } = props;
+  const { classes, todoIds } = props;
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
         <NewTodoComp/>
         <List dense className={classes.list}>
-          {todos.map(todo => <TodoComp todo={todo}></TodoComp>)}
+          { todoIds.map(todoId => <TodoComp id={todoId}/>) }
         </List>
       </Paper>
     </div>
@@ -58,4 +61,6 @@ TodoListComp.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles)(TodoListComp);
+export default connect(mapState)(
+  withStyles(styles)(TodoListComp)
+)
