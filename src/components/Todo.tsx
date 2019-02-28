@@ -30,29 +30,18 @@ export interface Props extends
   toggleTodo: (id: number) => void
 }
 
-class TodoComp extends React.PureComponent<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.toggleTodo(this.props.id)
-  }
-
-  render() {
-    const { classes, todo, id, toggleTodo } = this.props;
-    return (
-      <ListItem key={id} role={undefined} dense button onClick={this.handleClick}>
-        <Checkbox
-          checked={todo.completed}
-          tabIndex={-1}
-          disableRipple
-        />
-        <ListItemText primary={todo.text} />
-      </ListItem>
-    )
-  }
+const TodoComp = (props: Props) => {
+  const { classes, todo, id, toggleTodo } = props;
+  return (
+    <ListItem role={undefined} dense button onClick={() => props.toggleTodo(id)}>
+      <Checkbox
+        checked={todo.completed}
+        tabIndex={-1}
+        disableRipple
+      />
+      <ListItemText primary={todo.text} />
+    </ListItem>
+  )
 }
 
 

@@ -49,7 +49,7 @@ function TodoListComp(props: Props) {
       <Paper className={classes.paper}>
         <NewTodoComp/>
         <List dense className={classes.list}>
-          { todoIds.map(todoId => <TodoComp id={todoId}/>) }
+          { todoIds.map(todoId => <TodoComp key={todoId} id={todoId}/>) }
         </List>
       </Paper>
     </div>
