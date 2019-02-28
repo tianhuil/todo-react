@@ -31,9 +31,9 @@ export interface Props extends
 }
 
 const TodoComp = (props: Props) => {
-  const { classes, todo, id, toggleTodo } = props;
+  const { todo, id, toggleTodo } = props;
   return (
-    <ListItem role={undefined} dense button onClick={() => props.toggleTodo(id)}>
+    <ListItem role={undefined} dense button onClick={() => toggleTodo(id)}>
       <Checkbox
         checked={todo.completed}
         tabIndex={-1}
