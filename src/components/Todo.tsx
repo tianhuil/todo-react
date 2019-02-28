@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import { State } from "../store/";
+import { State, toggleTodo } from "../store/";
 
 const styles = (theme: Theme) => createStyles({
 })
@@ -19,30 +19,50 @@ const mapState = (state: State, prop: DirectProps) => ({
   todo: state.todo.getId[prop.id],
 })
 
+const mapDispatch = {
+  toggleTodo,
+}
+
 export interface Props extends
     WithStyles<typeof styles>,
     ReturnType<typeof mapState>,
     DirectProps {
+  toggleTodo: (id: number) => void
 }
 
-function TodoComp(props: Props) {
-  const { classes, todo, id } = props;
-  return (
-    <ListItem key={id} role={undefined} dense button>
-      <Checkbox
-        checked={todo.completed}
-        tabIndex={-1}
-        disableRipple
-      />
-      <ListItemText primary={todo.text} />
-    </ListItem>
-  )
+class TodoComp extends React.PureComponent<Props> {
+  constructor(props: Props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.toggleTodo(this.props.id)
+  }
+
+  render() {
+    const { classes, todo, id, toggleTodo } = this.props;
+    return (
+      <ListItem key={id} role={undefined} dense button onClick={this.handleClick}>
+        <Checkbox
+          checked={todo.completed}
+          tabIndex={-1}
+          disableRipple
+        />
+        <ListItemText primary={todo.text} />
+      </ListItem>
+    )
+  }
 }
+
 
 TodoComp.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default connect(mapState)(
+export default connect(
+  mapState,
+  mapDispatch,
+)(
   withStyles(styles)(TodoComp)
 )
