@@ -4,7 +4,7 @@ const initialState: TodoState = {
   allIds: [0, 1],
   getId: {
     0: { id: 0, text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", completed: false },
-    1: { id: 1, text: "Praesentium placeat aut animi suscipit ipsa nesciunt vitae vero repellat reiciendis", completed: false }
+    1: { id: 1, text: "Praesentium placeat aut animi suscipit ipsa nesciunt vitae vero repellat reiciendis", completed: true }
   },
 }
 
