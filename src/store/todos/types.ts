@@ -25,4 +25,5 @@ export interface TodoState {
   getId: { // get Todo for a specific id
     [id: number]: Todo
   },
+  nextId: number, // next Id to use
 }

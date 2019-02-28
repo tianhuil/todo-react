@@ -6,27 +6,28 @@ const initialState: TodoState = {
     0: { id: 0, text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", completed: false },
     1: { id: 1, text: "Praesentium placeat aut animi suscipit ipsa nesciunt vitae vero repellat reiciendis", completed: true }
   },
+  nextId: 2,
 }
 
 export function todoReducer(
   state=initialState,
   action: TodoActionTypes
 ): TodoState {
-  const { allIds, getId } = state
+  const { allIds, getId, nextId } = state
   switch(action.type) {
     case ADD_TODO:
-      const newTodoId: number = allIds.length
       const newTodo: Todo = {
-        id: newTodoId,
+        id: nextId,
         text: action.text,
         completed: false
       }
       return {
-        allIds: [...allIds, newTodoId],
+        allIds: [...allIds, nextId],
         getId: {
           ...getId,
-          [newTodoId]: newTodo
-        }
+          [nextId]: newTodo
+        },
+        nextId: nextId + 1
       }
 
     case TOGGLE_TODO:
@@ -36,7 +37,7 @@ export function todoReducer(
         completed: !getId[id].completed
       }
       return {
-        allIds,
+        ...state,
         getId: {
           ...getId,
           [id]: toggledTodo
