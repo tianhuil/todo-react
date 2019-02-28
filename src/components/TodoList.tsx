@@ -5,7 +5,7 @@ import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/s
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 
-import NewTodoComp from './NewTodo';
+import AddTodoComp from './AddTodo';
 import TodoComp from './Todo';
 import { State } from "../store/";
 
@@ -47,7 +47,7 @@ function TodoListComp(props: Props) {
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
-        <NewTodoComp/>
+        <AddTodoComp/>
         <List dense className={classes.list}>
           { todoIds.map(todoId => <TodoComp key={todoId} id={todoId}/>) }
         </List>

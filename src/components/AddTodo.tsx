@@ -35,7 +35,7 @@ const styles = (theme: Theme) => createStyles({
 
 export interface Props extends WithStyles<typeof styles> {}
 
-function NewTodoComp(props: Props) {
+function AddTodoComp(props: Props) {
   const { classes } = props;
 
   return (
@@ -50,8 +50,8 @@ function NewTodoComp(props: Props) {
   );
 }
 
-NewTodoComp.propTypes = {
+AddTodoComp.propTypes = {
   classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles)(NewTodoComp);
+export default withStyles(styles)(AddTodoComp);
