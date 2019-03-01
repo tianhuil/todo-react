@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -86,9 +85,5 @@ function HeaderComp(props: Props) {
     </div>
   );
 }
-
-HeaderComp.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
 
 export default withStyles(styles)(HeaderComp);

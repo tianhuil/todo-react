@@ -1,6 +1,5 @@
 import React, { FormEvent } from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Icon from '@material-ui/core/Icon';
@@ -74,10 +73,6 @@ class AddTodoComp extends React.Component<Props> {
     );
   }
 }
-
-AddTodoComp.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
 
 export default connect(
   null,

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -56,10 +55,6 @@ function TodoListComp(props: Props) {
 
   );
 }
-
-TodoListComp.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
 
 export default connect(mapState)(
   withStyles(styles)(TodoListComp)

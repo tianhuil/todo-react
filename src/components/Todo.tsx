@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -43,11 +42,6 @@ const TodoComp = (props: Props) => {
     </ListItem>
   )
 }
-
-
-TodoComp.propTypes = {
-  classes: PropTypes.object.isRequired,
-} as any;
 
 export default connect(
   mapState,
