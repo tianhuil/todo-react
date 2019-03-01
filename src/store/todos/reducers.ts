@@ -1,4 +1,4 @@
-import { Todo, ADD_TODO, TOGGLE_TODO, TodoActionTypes, TodoState } from "./types"
+import { Todo, ADD_TODO, TOGGLE_TODO, DELETE_TODO, TodoActionTypes, TodoState } from "./types"
 
 const initialState: TodoState = {
   allIds: [0, 1],
@@ -15,7 +15,7 @@ export function todoReducer(
 ): TodoState {
   const { allIds, getId, nextId } = state
   switch(action.type) {
-    case ADD_TODO:
+    case ADD_TODO: {
       const newTodo: Todo = {
         id: nextId,
         text: action.text,
@@ -29,8 +29,9 @@ export function todoReducer(
         },
         nextId: nextId + 1
       }
+    }
 
-    case TOGGLE_TODO:
+    case TOGGLE_TODO: {
       const id = action.id
       const toggledTodo: Todo = {
         ...getId[id],
@@ -43,8 +44,21 @@ export function todoReducer(
           [id]: toggledTodo
         }
       }
+    }
 
-    default:
+    case DELETE_TODO: {
+      const id = action.id
+      var newGetId = {...getId}
+      delete newGetId[id]
+      return {
+        ...state,
+        allIds: allIds.filter(i => i !== id),
+        getId: newGetId
+      }
+    }
+
+    default: {
       return state
+    }
   }
 }

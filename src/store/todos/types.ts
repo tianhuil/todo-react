@@ -6,6 +6,7 @@ export interface Todo {
 
 export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
+export const DELETE_TODO = 'DELETE_TODO'
 
 interface AddTodoAction {
   type: typeof ADD_TODO
@@ -17,7 +18,12 @@ interface CompleteTodoAction {
   id: number
 }
 
-export type TodoActionTypes = AddTodoAction | CompleteTodoAction
+interface DeleteTodoAction {
+  type: typeof DELETE_TODO
+  id: number
+}
+
+export type TodoActionTypes = AddTodoAction | CompleteTodoAction | DeleteTodoAction
 
 // slighty odd Todo, but it allows O(1) mutations
 export interface TodoState {

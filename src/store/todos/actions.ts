@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from "./types"
+import { ADD_TODO, TOGGLE_TODO, DELETE_TODO } from "./types"
 
 export const addTodo = (text: string) => ({
   type: ADD_TODO,
@@ -7,5 +7,10 @@ export const addTodo = (text: string) => ({
 
 export const toggleTodo = (id: number) => ({
   type: TOGGLE_TODO,
+  id
+})
+
+export const deleteTodo = (id: number) => ({
+  type: DELETE_TODO,
   id
 })
