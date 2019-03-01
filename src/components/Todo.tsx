@@ -1,13 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import { State, toggleTodo } from "../store/";
+import { State, toggleTodo, deleteTodo } from "../store/";
+import { ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
 
 const styles = (theme: Theme) => createStyles({
+  checkbox: {
+    '&:checked': {
+      color: theme.palette.secondary.main
+    }
+  },
+  delete: {
+    color: theme.palette.grey[500],
+  }
 })
 
 interface DirectProps {
@@ -20,6 +30,7 @@ const mapState = (state: State, prop: DirectProps) => ({
 
 const mapDispatch = {
   toggleTodo,
+  deleteTodo,
 }
 
 export interface Props extends
@@ -27,18 +38,27 @@ export interface Props extends
     ReturnType<typeof mapState>,
     DirectProps {
   toggleTodo: (id: number) => void
+  deleteTodo: (id: number) => void
 }
 
 const TodoComp = (props: Props) => {
-  const { todo, id, toggleTodo } = props;
+  const { todo, id, toggleTodo, deleteTodo, classes } = props;
   return (
     <ListItem role={undefined} dense button onClick={() => toggleTodo(id)}>
       <Checkbox
+        className={classes.checkbox}
         checked={todo.completed}
         tabIndex={-1}
         disableRipple
       />
       <ListItemText primary={todo.text} />
+      <ListItemSecondaryAction>
+        <IconButton onClick={() => deleteTodo(id)}>
+          <Icon className={classes.delete}>
+            delete_forever
+          </Icon>
+        </IconButton>
+      </ListItemSecondaryAction>
     </ListItem>
   )
 }
