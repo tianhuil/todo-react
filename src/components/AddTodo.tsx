@@ -44,12 +44,12 @@ export interface Props extends WithStyles<typeof styles> {
 }
 
 class AddTodoComp extends React.Component<Props> {
-  input: React.RefObject<{}>
+  input: React.RefObject<HTMLInputElement>
 
   constructor(props: Props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.input = React.createRef();
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.input = React.createRef()
   }
 
   handleSubmit(event: FormEvent) {
@@ -63,7 +63,7 @@ class AddTodoComp extends React.Component<Props> {
 
     return (
       <form className={classes.root} onSubmit={this.handleSubmit}>
-        <Input className={classes.input} placeholder="Add New Todo &hellip;" inputRef={el => this.input=el}/>
+        <Input className={classes.input} placeholder="Add New Todo &hellip;" inputRef={el => this.input = el}/>
         <IconButton aria-label="Comments" className={classes.icon} onClick={this.handleSubmit} type="submit">
           <Icon color="primary">
             add_circle
