@@ -36,10 +36,11 @@ const mapState = (state: State) => ({
   todoIds: state.todo.allIds,
 })
 
+
 export interface Props extends
   WithStyles<typeof styles>,
-  ReturnType<typeof mapState> {
-}
+  ReturnType<typeof mapState>
+{}
 
 function TodoListComp(props: Props) {
   const { classes, todoIds } = props;
@@ -52,7 +53,6 @@ function TodoListComp(props: Props) {
         </List>
       </Paper>
     </div>
-
   );
 }
 

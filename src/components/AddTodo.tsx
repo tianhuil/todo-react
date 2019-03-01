@@ -1,5 +1,6 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
+import { Field, reduxForm, InjectedFormProps, WrappedFieldProps } from 'redux-form'
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Icon from '@material-ui/core/Icon';
@@ -39,44 +40,50 @@ const mapDispatch = {
   addTodo,
 }
 
+interface FormData {
+  text: string
+}
+
 export interface Props extends WithStyles<typeof styles> {
   addTodo: (text: string) => void
 }
+function AddTodoForm(props: InjectedFormProps<FormData> & Props) {
+  const { handleSubmit, classes, addTodo } = props
+  const submit = (values: FormData) => addTodo(values.text)
+  
+  type InputProps = {
+    placeholder: string
+  } & WrappedFieldProps
+  const renderInput: React.StatelessComponent<InputProps> = ({
+    input,
+    placeholder
+  }) => (
+    <Input {...input} className={classes.input} placeholder={placeholder} />
+  )
 
-class AddTodoComp extends React.Component<Props> {
-  input: React.RefObject<HTMLInputElement>
-
-  constructor(props: Props) {
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.input = React.createRef()
-  }
-
-  handleSubmit(event: FormEvent) {
-    this.props.addTodo(this.input.value)
-    this.input.value = ''
-    event.preventDefault()
-  }
-
-  render() {
-    const { classes, addTodo } = this.props;
-
-    return (
-      <form className={classes.root} onSubmit={this.handleSubmit}>
-        <Input className={classes.input} placeholder="Add New Todo &hellip;" inputRef={el => this.input = el}/>
-        <IconButton aria-label="Comments" className={classes.icon} onClick={this.handleSubmit} type="submit">
-          <Icon color="primary">
-            add_circle
-          </Icon>
-        </IconButton>
-      </form>
-    );
-  }
+  return (
+    <form className={classes.root} onSubmit={handleSubmit(submit)}>
+      <Field
+        name="text"
+        component={renderInput}
+        placeholder="Add New Todo &hellip;"
+        classes={classes} 
+        />
+      <IconButton aria-label="Comments" className={classes.icon} type="submit">
+        <Icon color="primary">
+          add_circle
+        </Icon>
+      </IconButton>
+    </form>
+  );
 }
 
-export default connect(
-  null,
-  mapDispatch,
-)(
-  withStyles(styles)(AddTodoComp)
+export default connect(null, mapDispatch)(
+  reduxForm(
+    {
+      form: 'add'
+    }
+  )(
+    withStyles(styles)(AddTodoForm)
+  )  
 )
