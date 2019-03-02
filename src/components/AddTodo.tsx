@@ -51,25 +51,28 @@ export interface Props extends WithStyles<typeof styles>,
   addTodo: (..._: ArgumentType<typeof addTodo>) => void
 }
 
-function AddTodoForm(props: Props) {
-  const { handleSubmit, classes, addTodo } = props
-  const submit = (values: FormData) => addTodo(values.text)
+type InputProps = WrappedFieldProps & WithStyles<typeof styles> & {
+  placeholder: string
+}
 
-  type InputProps = {
-    placeholder: string
-  } & WrappedFieldProps
-  const renderInput: React.StatelessComponent<InputProps> = ({
-    input,
-    placeholder
-  }) => (
-    <Input {...input} className={classes.input} placeholder={placeholder} />
-  )
+const AddInput: React.StatelessComponent<InputProps> = ({input, placeholder, classes}) => (
+  <Input {...input} placeholder={placeholder} className={classes.input} />
+)
+
+const AddTodoForm: React.StatelessComponent<Props> = (props: Props) => {
+  const { handleSubmit, classes, reset, addTodo } = props
+
+  const submit = (values: FormData) => {
+    addTodo(values.text)
+    reset()
+  }
 
   return (
     <form className={classes.root} onSubmit={handleSubmit(submit)}>
       <Field
         name="text"
-        component={renderInput}
+        // Do not `.bind(this)` on below line: otherwise, will re-render and loose focus upon `onChange`
+        component={AddInput}
         placeholder="Add New Todo &hellip;"
         classes={classes} 
         />
@@ -79,7 +82,7 @@ function AddTodoForm(props: Props) {
         </Icon>
       </IconButton>
     </form>
-  );
+  )
 }
 
 export default compose(
@@ -87,4 +90,3 @@ export default compose(
   reduxForm({form: 'add'}),
   withStyles(styles),
 )(AddTodoForm)
-
