@@ -36,7 +36,6 @@ const mapState = (state: State) => ({
   todoIds: state.todo.allIds,
 })
 
-
 export interface Props extends WithStyles<typeof styles>,
                                ReturnType<typeof mapState> {}
 

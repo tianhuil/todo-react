@@ -6,6 +6,7 @@ import Input from '@material-ui/core/Input';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
+import { ArgumentType } from '../utils'
 import { addTodo } from "../store/";
 
 const styles = (theme: Theme) => createStyles({
@@ -46,7 +47,7 @@ interface FormData {
 
 export interface Props extends WithStyles<typeof styles>,
                                InjectedFormProps<FormData> {
-  addTodo: (text: string) => void
+  addTodo: (..._: ArgumentType<typeof addTodo>) => void
 }
 
 function AddTodoForm(props: Props) {

@@ -9,6 +9,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { State, toggleTodo, deleteTodo } from "../store/";
 import { ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
 
+import { ArgumentType } from '../utils'
+
 const styles = (theme: Theme) => createStyles({
   checkbox: {
     '&:checked': {
@@ -36,8 +38,8 @@ const mapDispatch = {
 export interface Props extends WithStyles<typeof styles>,
                                ReturnType<typeof mapState>,
                                DirectProps {
-  toggleTodo: (id: number) => void
-  deleteTodo: (id: number) => void
+  toggleTodo: (..._: ArgumentType<typeof toggleTodo>) => void,
+  deleteTodo: (..._: ArgumentType<typeof deleteTodo>) => void,
 }
 
 const TodoComp = (props: Props) => {
