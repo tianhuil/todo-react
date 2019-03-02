@@ -46,11 +46,6 @@ interface FormData {
   text: string
 }
 
-export interface Props extends WithStyles<typeof styles>,
-                               InjectedFormProps<FormData> {
-  addTodo: (..._: ArgumentType<typeof addTodo>) => void
-}
-
 type InputProps = WrappedFieldProps & WithStyles<typeof styles> & {
   placeholder: string
 }
@@ -58,6 +53,11 @@ type InputProps = WrappedFieldProps & WithStyles<typeof styles> & {
 const AddInput: React.StatelessComponent<InputProps> = ({input, placeholder, classes}) => (
   <Input {...input} placeholder={placeholder} className={classes.input} />
 )
+
+export interface Props extends WithStyles<typeof styles>,
+                               InjectedFormProps<FormData> {
+  addTodo: (..._: ArgumentType<typeof addTodo>) => void
+}
 
 const AddTodoForm: React.StatelessComponent<Props> = (props: Props) => {
   const { handleSubmit, classes, reset, addTodo } = props
