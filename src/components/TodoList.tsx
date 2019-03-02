@@ -37,10 +37,8 @@ const mapState = (state: State) => ({
 })
 
 
-export interface Props extends
-  WithStyles<typeof styles>,
-  ReturnType<typeof mapState>
-{}
+export interface Props extends WithStyles<typeof styles>,
+                               ReturnType<typeof mapState> {}
 
 function TodoListComp(props: Props) {
   const { classes, todoIds } = props;

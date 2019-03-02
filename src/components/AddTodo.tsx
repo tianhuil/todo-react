@@ -44,13 +44,15 @@ interface FormData {
   text: string
 }
 
-export interface Props extends WithStyles<typeof styles> {
+export interface Props extends WithStyles<typeof styles>,
+                               InjectedFormProps<FormData> {
   addTodo: (text: string) => void
 }
-function AddTodoForm(props: InjectedFormProps<FormData> & Props) {
+
+function AddTodoForm(props: Props) {
   const { handleSubmit, classes, addTodo } = props
   const submit = (values: FormData) => addTodo(values.text)
-  
+
   type InputProps = {
     placeholder: string
   } & WrappedFieldProps

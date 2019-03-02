@@ -33,10 +33,9 @@ const mapDispatch = {
   deleteTodo,
 }
 
-export interface Props extends
-    WithStyles<typeof styles>,
-    ReturnType<typeof mapState>,
-    DirectProps {
+export interface Props extends WithStyles<typeof styles>,
+                               ReturnType<typeof mapState>,
+                               DirectProps {
   toggleTodo: (id: number) => void
   deleteTodo: (id: number) => void
 }
