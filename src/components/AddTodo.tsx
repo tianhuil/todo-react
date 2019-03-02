@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import { ArgumentType } from '../utils'
 import { addTodo } from "../store/";
+import { compose } from 'redux';
 
 const styles = (theme: Theme) => createStyles({
   root: {
@@ -81,12 +82,9 @@ function AddTodoForm(props: Props) {
   );
 }
 
-export default connect(null, mapDispatch)(
-  reduxForm(
-    {
-      form: 'add'
-    }
-  )(
-    withStyles(styles)(AddTodoForm)
-  )  
-)
+export default compose(
+  connect(null, mapDispatch),
+  reduxForm({form: 'add'}),
+  withStyles(styles),
+)(AddTodoForm)
+

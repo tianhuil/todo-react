@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { compose } from 'redux';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -53,6 +54,7 @@ function TodoListComp(props: Props) {
   );
 }
 
-export default connect(mapState)(
-  withStyles(styles)(TodoListComp)
-)
+export default compose(
+  connect(mapState),
+  withStyles(styles),
+)(TodoListComp)

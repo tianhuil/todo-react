@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -10,6 +9,7 @@ import { State, toggleTodo, deleteTodo } from "../store/";
 import { ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
 
 import { ArgumentType } from '../utils'
+import { compose } from 'redux';
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
@@ -64,9 +64,7 @@ const TodoComp = (props: Props) => {
   )
 }
 
-export default connect(
-  mapState,
-  mapDispatch,
-)(
-  withStyles(styles)(TodoComp)
-)
+export default compose(
+  connect(mapState, mapDispatch),
+  withStyles(styles)
+)(TodoComp)
