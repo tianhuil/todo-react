@@ -1,4 +1,13 @@
-import { Todo, ADD_TODO, TOGGLE_TODO, DELETE_TODO, TodoActionTypes, TodoState } from "./types"
+import { Todo, ADD_TODO, TOGGLE_TODO, DELETE_TODO, TodoActionTypes } from "./actions"
+
+// slighty odd Todo, but it allows O(1) mutations
+export interface TodoState {
+  allIds: number[],  // all ids
+  getId: { // get Todo for a specific id
+    [id: number]: Todo
+  },
+  nextId: number, // next Id to use
+}
 
 const initialState: TodoState = {
   allIds: [0, 1],

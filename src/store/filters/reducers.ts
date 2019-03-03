@@ -1,4 +1,8 @@
-import { FilterActionTypes, FilterState, Filter, SET_FILTER } from './types'
+import { FilterActionTypes, Filter, SET_FILTER } from './actions'
+
+export interface FilterState {
+  filter: Filter
+}
 
 const initialState: FilterState = {
   filter: Filter.All
