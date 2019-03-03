@@ -6,7 +6,7 @@ import Input from '@material-ui/core/Input';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
-import { ArgumentType } from '../utils'
+import { DispatchType } from '../store/utils'
 import { addTodo } from "../store/";
 import { compose } from 'redux';
 
@@ -55,9 +55,8 @@ const AddInput: React.StatelessComponent<InputProps> = ({input, placeholder, cla
 )
 
 export interface Props extends WithStyles<typeof styles>,
-                               InjectedFormProps<FormData> {
-  addTodo: (..._: ArgumentType<typeof addTodo>) => void
-}
+                               InjectedFormProps<FormData>,
+                               DispatchType<typeof mapDispatch> {}
 
 const AddTodoForm: React.StatelessComponent<Props> = (props: Props) => {
   const { handleSubmit, classes, reset, addTodo } = props
@@ -86,7 +85,7 @@ const AddTodoForm: React.StatelessComponent<Props> = (props: Props) => {
 }
 
 export default compose(
-  connect(null, mapDispatch),
   reduxForm({form: 'add'}),
+  connect(null, mapDispatch),
   withStyles(styles),
 )(AddTodoForm)

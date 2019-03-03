@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
@@ -8,8 +8,9 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { State, toggleTodo, deleteTodo } from "../store/";
 import { ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
 
-import { ArgumentType } from '../utils'
 import { compose } from 'redux';
+
+import { DispatchType } from '../store/utils'
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
@@ -37,10 +38,8 @@ const mapDispatch = {
 
 export interface Props extends WithStyles<typeof styles>,
                                ReturnType<typeof mapState>,
-                               DirectProps {
-  toggleTodo: (..._: ArgumentType<typeof toggleTodo>) => void,
-  deleteTodo: (..._: ArgumentType<typeof deleteTodo>) => void,
-}
+                               DispatchType<typeof mapDispatch>,
+                               DirectProps {}
 
 const TodoComp = (props: Props) => {
   const { todo, id, toggleTodo, deleteTodo, classes } = props;
