@@ -10,17 +10,11 @@ import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox'
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import FilterButton from './FilterButton';
 
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)
-
-  const buttonSpacing = {
-    padding: theme.spacing.unit,
-    [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing.unit * 2,
-    },
-  }
 
   return createStyles({
     root: {
@@ -66,21 +60,12 @@ const styles = (theme: Theme) => {
       display: 'flex',
       flexGrow: 1,
     },
-    filterButton: {
-      ...buttonSpacing,
-      color: offWhite,
-    },
-    activefilterButton: {
-      ...buttonSpacing,
-      color: theme.palette.common.white,
-    }
   })
 };
 
 export interface Props extends WithStyles<typeof styles> {}
 
-function HeaderComp(props: Props) {
-  const { classes } = props;
+const HeaderComp: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -95,15 +80,15 @@ function HeaderComp(props: Props) {
             </IconButton>
           </div>
           <div className={classes.filterButtons}>
-            <IconButton className={classes.activefilterButton}>
+          <FilterButton active={true}>
               <IndeterminateCheckBox/>
-            </IconButton>
-            <IconButton className={classes.filterButton}>
+            </FilterButton>
+            <FilterButton>
               <CheckBox/>
-            </IconButton>
-            <IconButton className={classes.filterButton}>
+            </FilterButton>
+            <FilterButton>
               <CheckBoxOutlineBlank/>
-            </IconButton>
+            </FilterButton>
           </div>
         </Toolbar>
       </AppBar>
