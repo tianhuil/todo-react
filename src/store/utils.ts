@@ -1,4 +1,4 @@
-import { ActionCreatorsMapObject } from "redux";
+import { ActionCreatorsMapObject } from 'redux';
 
 export type ArgumentType<F extends Function> = F extends (...args: infer A) => any ? A : never;
 type VoidReturn<T> = T extends ((...args: infer A) => any) ? ((...args: A) => void) : any;

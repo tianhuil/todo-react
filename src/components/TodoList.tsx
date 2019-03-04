@@ -7,7 +7,7 @@ import List from '@material-ui/core/List';
 
 import AddTodoComp from './AddTodo';
 import TodoComp from './Todo';
-import { State } from "../store/";
+import { State } from '../store/';
 
 const styles = (theme: Theme) => createStyles({
   container: {

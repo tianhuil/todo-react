@@ -3,5 +3,6 @@
     "extends": "tslint:recommended",
     "jsRules": {},
     "rules": {},
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "quotemark": [true, "single", "jsx-single"],
 }

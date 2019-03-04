@@ -1,5 +1,6 @@
-import { Todo, ADD_TODO, TOGGLE_TODO, DELETE_TODO, TodoActionTypes } from "./actions"
-import { DeepReadonly } from "utility-types"
+import { DeepReadonly } from 'utility-types';
+
+import { ADD_TODO, DELETE_TODO, Todo, TodoActionTypes, TOGGLE_TODO } from './actions';
 
 // slighty odd Todo, but it allows O(1) mutations
 export type TodoState = DeepReadonly<{
@@ -13,8 +14,8 @@ export type TodoState = DeepReadonly<{
 const initialState: TodoState = {
   allIds: [0, 1],
   getId: {
-    0: { id: 0, text: "Lorem ipsum dolor sit amet consectetur adipisicing elit.", completed: false },
-    1: { id: 1, text: "Praesentium placeat aut animi suscipit ipsa nesciunt vitae vero repellat reiciendis", completed: true }
+    0: { id: 0, text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.', completed: false },
+    1: { id: 1, text: 'Praesentium placeat aut animi suscipit ipsa nesciunt vitae vero', completed: true },
   },
   nextId: 2,
 }

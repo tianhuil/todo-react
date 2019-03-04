@@ -7,7 +7,7 @@ import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 
 import { DispatchType } from '../store/utils'
-import { addTodo } from "../store/";
+import { addTodo } from '../store/';
 import { compose } from 'redux';
 
 const styles = (theme: Theme) => createStyles({
@@ -67,14 +67,14 @@ const AddTodoForm: React.SFC<Props> = ({ handleSubmit, classes, reset, addTodo }
   return (
     <form className={classes.root} onSubmit={handleSubmit(submit)}>
       <Field
-        name="text"
+        name='text'
         // Do not `.bind(this)` on below line: otherwise, will re-render and loose focus upon `onChange`
         component={AddInput}
-        placeholder="Add New Todo &hellip;"
+        placeholder='Add New Todo &hellip;'
         classes={classes} 
         />
-      <IconButton aria-label="Comments" className={classes.icon} type="submit">
-        <Icon color="primary">
+      <IconButton aria-label='Comments' className={classes.icon} type='submit'>
+        <Icon color='primary'>
           add_circle
         </Icon>
       </IconButton>

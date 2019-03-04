@@ -1,11 +1,13 @@
-import React from 'react'
-import { createStyles, Theme, IconButton, WithStyles, withStyles } from '@material-ui/core';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { Filter, setFilter } from '../store/filters/actions';
-import { State } from '../store';
-import { DispatchType } from '../store/utils';
-import { compose } from 'redux';
+import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+
+import { State } from '../store';
+import { Filter, setFilter } from '../store/filters/actions';
+import { DispatchType } from '../store/utils';
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)

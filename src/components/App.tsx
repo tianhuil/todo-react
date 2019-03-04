@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import HeaderComp from "./Header"
-import TodoListComp from "./TodoList"
+import HeaderComp from './Header'
+import TodoListComp from './TodoList'
 
 import { reducer } from '../store'
 

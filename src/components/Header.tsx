@@ -1,18 +1,19 @@
 import React from 'react';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
+
 import AppBar from '@material-ui/core/AppBar';
+import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CheckBox from '@material-ui/icons/CheckBox';
-import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox'
 import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
-import IconButton from '@material-ui/core/IconButton';
+import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
 import SearchIcon from '@material-ui/icons/Search';
-import FilterButton from './FilterButton';
-import { Filter } from '../store/filters/actions';
 
+import { Filter } from '../store/filters/actions';
+import FilterButton from './FilterButton';
 
 const styles = (theme: Theme) => createStyles({
   root: {
@@ -66,14 +67,14 @@ export interface Props extends WithStyles<typeof styles> {}
 const HeaderComp: React.SFC<Props> = ({ classes }) => {
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position='static'>
         <Toolbar>
-          <Typography variant="h6" className={classes.logo}>
+          <Typography variant='h6' className={classes.logo}>
             Todo List
           </Typography>
           <div className={classes.search}>
-            <InputBase className={classes.searchInput} placeholder="Search&hellip;" />
-            <IconButton className={classes.searchIcon} aria-label="Search">
+            <InputBase className={classes.searchInput} placeholder='Search&hellip;' />
+            <IconButton className={classes.searchIcon} aria-label='Search'>
               <SearchIcon />
             </IconButton>
           </div>

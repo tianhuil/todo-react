@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import { State, toggleTodo, deleteTodo } from "../store/";
+import { State, toggleTodo, deleteTodo } from '../store/';
 import { ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
 
 import { compose } from 'redux';

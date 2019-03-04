@@ -1,5 +1,6 @@
-import { FilterActionTypes, Filter, SET_FILTER } from './actions'
 import { DeepReadonly } from 'utility-types';
+
+import { Filter, FilterActionTypes, SET_FILTER } from './actions';
 
 export type FilterState = DeepReadonly<{
   filter: Filter
