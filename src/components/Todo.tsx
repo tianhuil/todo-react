@@ -42,10 +42,14 @@ function display(completed: boolean, filter: Filter) {
   }
 }
 
-const mapState = (state: State, prop: DirectProps) => ({
-  todo: state.todo.getId[prop.id],
-  display: display(state.todo.getId[prop.id].completed, state.filter.filter)
-})
+const mapState = (state: State, prop: DirectProps) => {
+  const todo = state.todo.getId[prop.id]
+
+  return {
+    todo: todo,
+    display: display(todo.completed, state.filter.filter)
+  }
+}
 
 const mapDispatch = {
   toggleTodo,
