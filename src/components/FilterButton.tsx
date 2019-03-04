@@ -1,6 +1,11 @@
 import React from 'react'
 import { createStyles, Theme, IconButton, WithStyles, withStyles } from '@material-ui/core';
 import { fade } from '@material-ui/core/styles/colorManipulator';
+import { Filter, setFilter } from '../store/filters/actions';
+import { State } from '../store';
+import { DispatchType } from '../store/utils';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)
@@ -24,17 +29,33 @@ const styles = (theme: Theme) => {
   })
 }
 
-export interface Props extends WithStyles<typeof styles>{
-  active?: boolean
+interface DirectProps {
+  filter: Filter
 }
 
-const FilterButton: React.SFC<Props> = ({ classes, children, active }) => {
+const mapState = (state: State, props: DirectProps) => ({
+  active: state.filter.filter === props.filter
+})
+
+const mapDispatch = {
+  setFilter
+}
+
+export interface Props extends WithStyles<typeof styles>,
+                               ReturnType<typeof mapState>,
+                               DispatchType<typeof mapDispatch>,
+                               DirectProps {}
+
+const FilterButton: React.SFC<Props> = ({ classes, children, active, setFilter, filter }) => {
   const className = active ? classes.activefilterButton : classes.filterButton
   return (
-    <IconButton className={className}>
+    <IconButton className={className} onClick={() => setFilter(filter)}>
       {children}
     </IconButton>
   )
 }
 
-export default withStyles(styles)(FilterButton)
+export default compose(
+  connect(mapState, mapDispatch),
+  withStyles(styles),
+)(FilterButton)

@@ -11,6 +11,7 @@ import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import FilterButton from './FilterButton';
+import { Filter } from '../store/filters/actions';
 
 
 const styles = (theme: Theme) => {
@@ -80,13 +81,13 @@ const HeaderComp: React.SFC<Props> = ({ classes }) => {
             </IconButton>
           </div>
           <div className={classes.filterButtons}>
-          <FilterButton active={true}>
+          <FilterButton filter={Filter.All}>
               <IndeterminateCheckBox/>
             </FilterButton>
-            <FilterButton>
+            <FilterButton filter={Filter.Completed}>
               <CheckBox/>
             </FilterButton>
-            <FilterButton>
+            <FilterButton filter={Filter.Incompleted}>
               <CheckBoxOutlineBlank/>
             </FilterButton>
           </div>

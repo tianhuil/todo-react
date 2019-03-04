@@ -1,9 +1,9 @@
 export const SET_FILTER = 'SET_FILTER'
 
 export enum Filter {
-  All,
-  Completed,
-  Incompleted,
+  All = 'All',
+  Completed = 'Completed',
+  Incompleted = 'Incompleted',
 }
 
 interface SetFilterAction {
