@@ -11,6 +11,7 @@ import { ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
 import { compose } from 'redux';
 
 import { DispatchType } from '../store/utils'
+import { Filter } from '../store/filters/actions';
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
@@ -27,8 +28,23 @@ interface DirectProps {
   id: number
 }
 
+function display(completed: boolean, filter: Filter) {
+  switch(filter) {
+    case Filter.All: {
+      return true
+    }
+    case Filter.Completed: {
+      return completed ? true : false
+    }
+    case Filter.Incompleted: {
+      return completed ? false : true
+    }
+  }
+}
+
 const mapState = (state: State, prop: DirectProps) => ({
   todo: state.todo.getId[prop.id],
+  display: display(state.todo.getId[prop.id].completed, state.filter.filter)
 })
 
 const mapDispatch = {
@@ -41,7 +57,11 @@ export interface Props extends WithStyles<typeof styles>,
                                DispatchType<typeof mapDispatch>,
                                DirectProps {}
 
-const TodoComp: React.SFC<Props> = ({ todo, id, toggleTodo, deleteTodo, classes }) => {
+const TodoComp: React.SFC<Props> = ({ todo, id, toggleTodo, deleteTodo, classes, display }) => {
+  if (!display) {
+    return null
+  }
+
   return (
     <ListItem role={undefined} dense button onClick={() => toggleTodo(id)}>
       <Checkbox
