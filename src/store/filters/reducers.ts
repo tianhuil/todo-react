@@ -1,8 +1,9 @@
 import { FilterActionTypes, Filter, SET_FILTER } from './actions'
+import { DeepReadonly } from 'utility-types';
 
-export interface FilterState {
+export type FilterState = DeepReadonly<{
   filter: Filter
-}
+}>
 
 const initialState: FilterState = {
   filter: Filter.All

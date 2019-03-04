@@ -1,13 +1,14 @@
 import { Todo, ADD_TODO, TOGGLE_TODO, DELETE_TODO, TodoActionTypes } from "./actions"
+import { DeepReadonly } from "utility-types"
 
 // slighty odd Todo, but it allows O(1) mutations
-export interface TodoState {
+export type TodoState = DeepReadonly<{
   allIds: number[],  // all ids
   getId: { // get Todo for a specific id
     [id: number]: Todo
   },
   nextId: number, // next Id to use
-}
+}>
 
 const initialState: TodoState = {
   allIds: [0, 1],
