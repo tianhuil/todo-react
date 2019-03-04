@@ -58,9 +58,7 @@ export interface Props extends WithStyles<typeof styles>,
                                InjectedFormProps<FormData>,
                                DispatchType<typeof mapDispatch> {}
 
-const AddTodoForm: React.StatelessComponent<Props> = (props: Props) => {
-  const { handleSubmit, classes, reset, addTodo } = props
-
+const AddTodoForm: React.SFC<Props> = ({ handleSubmit, classes, reset, addTodo }) => {
   const submit = (values: FormData) => {
     addTodo(values.text)
     reset()

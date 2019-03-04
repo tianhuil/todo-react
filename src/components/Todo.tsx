@@ -41,8 +41,7 @@ export interface Props extends WithStyles<typeof styles>,
                                DispatchType<typeof mapDispatch>,
                                DirectProps {}
 
-const TodoComp = (props: Props) => {
-  const { todo, id, toggleTodo, deleteTodo, classes } = props;
+const TodoComp: React.SFC<Props> = ({ todo, id, toggleTodo, deleteTodo, classes }) => {
   return (
     <ListItem role={undefined} dense button onClick={() => toggleTodo(id)}>
       <Checkbox

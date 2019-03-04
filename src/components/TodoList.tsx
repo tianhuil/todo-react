@@ -40,8 +40,7 @@ const mapState = (state: State) => ({
 export interface Props extends WithStyles<typeof styles>,
                                ReturnType<typeof mapState> {}
 
-function TodoListComp(props: Props) {
-  const { classes, todoIds } = props;
+const TodoListComp: React.SFC<Props> = ({ classes, todoIds }) => {
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
