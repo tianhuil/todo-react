@@ -14,55 +14,52 @@ import FilterButton from './FilterButton';
 import { Filter } from '../store/filters/actions';
 
 
-const styles = (theme: Theme) => {
-  const offWhite = fade(theme.palette.common.white, 0.5)
+const styles = (theme: Theme) => createStyles({
+  root: {
+    flexGrow: 1,
+  },
+  logo: {
+    flexGrow: 1,
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'flex',
+    },
+    color: fade(theme.palette.common.white, 0.9),
+    marginRight: theme.spacing.unit * 2,
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    width: '100%',
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up('sm')]: {
+      width: 300,
+    },
+    display: 'flex',
+  },
+  searchInput: {
+    marginLeft: 8,
+    flexGrow: 1,
+    color: 'inherit',
+    width: '100%',
+  },
+  searchIcon: {
+    flexGrow: 0,
+    padding: theme.spacing.unit,
+    color: 'inherit',
+  },
+  filterButtons: {
+    justifyContent: 'flex-end',
+    display: 'flex',
+    flexGrow: 1,
+  },
+})
 
-  return createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    logo: {
-      flexGrow: 1,
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'flex',
-      },
-      color: offWhite,
-      marginRight: theme.spacing.unit * 2,
-    },
-    search: {
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
-      },
-      width: '100%',
-      marginLeft: theme.spacing.unit * 2,
-      marginRight: theme.spacing.unit * 2,
-      [theme.breakpoints.up('sm')]: {
-        width: 300,
-      },
-      display: 'flex',
-    },
-    searchInput: {
-      marginLeft: 8,
-      flexGrow: 1,
-      color: 'inherit',
-      width: '100%',
-    },
-    searchIcon: {
-      flexGrow: 0,
-      padding: theme.spacing.unit,
-      color: 'inherit',
-    },
-    filterButtons: {
-      justifyContent: 'flex-end',
-      display: 'flex',
-      flexGrow: 1,
-    },
-  })
-};
 
 export interface Props extends WithStyles<typeof styles> {}
 
