@@ -5,12 +5,22 @@ import AppBar from '@material-ui/core/AppBar';
 import InputBase from '@material-ui/core/InputBase';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import CheckBox from '@material-ui/icons/CheckBox';
+import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox'
+import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
+
 const styles = (theme: Theme) => {
-  const offWhite = fade(theme.palette.common.white, 0.8)
+  const offWhite = fade(theme.palette.common.white, 0.5)
+
+  const buttonSpacing = {
+    padding: theme.spacing.unit,
+    [theme.breakpoints.up('sm')]: {
+      padding: theme.spacing.unit * 2,
+    },
+  }
 
   return createStyles({
     root: {
@@ -51,11 +61,18 @@ const styles = (theme: Theme) => {
       padding: theme.spacing.unit,
       color: 'inherit',
     },
-    accountButton: {
-      marginLeft: theme.spacing.unit * 2,
+    filterButtons: {
+      justifyContent: 'flex-end',
+      display: 'flex',
       flexGrow: 1,
-      textAlign: "right",
+    },
+    filterButton: {
+      ...buttonSpacing,
       color: offWhite,
+    },
+    activefilterButton: {
+      ...buttonSpacing,
+      color: theme.palette.common.white,
     }
   })
 };
@@ -77,8 +94,16 @@ function HeaderComp(props: Props) {
               <SearchIcon />
             </IconButton>
           </div>
-          <div className={classes.accountButton}>
-            <AccountCircle/>
+          <div className={classes.filterButtons}>
+            <IconButton className={classes.activefilterButton}>
+              <IndeterminateCheckBox/>
+            </IconButton>
+            <IconButton className={classes.filterButton}>
+              <CheckBox/>
+            </IconButton>
+            <IconButton className={classes.filterButton}>
+              <CheckBoxOutlineBlank/>
+            </IconButton>
           </div>
         </Toolbar>
       </AppBar>
