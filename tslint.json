@@ -4,5 +4,5 @@
     "jsRules": {},
     "rules": {},
     "rulesDirectory": [],
-    "quotemark": [true, "single", "jsx-single"],
+    "quotemark": [true, "single", "jsx-single"]
 }
