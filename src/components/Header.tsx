@@ -1,70 +1,67 @@
-import React from 'react';
-
-import AppBar from '@material-ui/core/AppBar';
-import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import CheckBox from '@material-ui/icons/CheckBox';
-import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank';
-import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
-import SearchIcon from '@material-ui/icons/Search';
-
-import { Filter } from '../store/filters/actions';
-import FilterButton from './FilterButton';
+import AppBar from '@material-ui/core/AppBar'
+import IconButton from '@material-ui/core/IconButton'
+import InputBase from '@material-ui/core/InputBase'
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles/colorManipulator'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import CheckBox from '@material-ui/icons/CheckBox'
+import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank'
+import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox'
+import SearchIcon from '@material-ui/icons/Search'
+import React from 'react'
+import { Filter } from '../store/filters/actions'
+import FilterButton from './FilterButton'
 
 const styles = (theme: Theme) => createStyles({
-  root: {
-    flexGrow: 1,
-  },
   logo: {
-    flexGrow: 1,
+    color: fade(theme.palette.common.white, 0.9),
     display: 'none',
+    flexGrow: 1,
+    marginRight: theme.spacing.unit * 2,
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
     },
-    color: fade(theme.palette.common.white, 0.9),
-    marginRight: theme.spacing.unit * 2,
+  },
+  root: {
+    flexGrow: 1,
   },
   search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    width: '100%',
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    borderRadius: theme.shape.borderRadius,
+    display: 'flex',
     marginLeft: theme.spacing.unit * 2,
     marginRight: theme.spacing.unit * 2,
+    position: 'relative',
+    width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: 300,
     },
-    display: 'flex',
   },
   searchInput: {
-    marginLeft: 8,
-    flexGrow: 1,
     color: 'inherit',
+    flexGrow: 1,
+    marginLeft: 8,
     width: '100%',
   },
   searchIcon: {
+    color: 'inherit',
     flexGrow: 0,
     padding: theme.spacing.unit,
-    color: 'inherit',
   },
   filterButtons: {
-    justifyContent: 'flex-end',
     display: 'flex',
     flexGrow: 1,
+    justifyContent: 'flex-end',
   },
 })
 
+export interface IProps extends WithStyles<typeof styles> {}
 
-export interface Props extends WithStyles<typeof styles> {}
-
-const HeaderComp: React.SFC<Props> = ({ classes }) => {
+const HeaderComp: React.SFC<IProps> = ({ classes }) => {
   return (
     <div className={classes.root}>
       <AppBar position='static'>
@@ -73,7 +70,7 @@ const HeaderComp: React.SFC<Props> = ({ classes }) => {
             Todo List
           </Typography>
           <div className={classes.search}>
-            <InputBase className={classes.searchInput} placeholder='Search&hellip;' />
+            <InputBase className={classes.searchInput} placeholder='Search&hellip' />
             <IconButton className={classes.searchIcon} aria-label='Search'>
               <SearchIcon />
             </IconButton>
@@ -92,7 +89,7 @@ const HeaderComp: React.SFC<Props> = ({ classes }) => {
         </Toolbar>
       </AppBar>
     </div>
-  );
+  )
 }
 
-export default withStyles(styles)(HeaderComp);
+export default withStyles(styles)(HeaderComp)

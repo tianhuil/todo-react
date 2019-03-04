@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
+import { combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
 
-import { setFilter } from './filters/actions';
-import { filterReducer } from './filters/reducers';
-import { addTodo, deleteTodo, Todo, toggleTodo } from './todos/actions';
-import { todoReducer } from './todos/reducers';
+import { setFilter } from './filters/actions'
+import { filterReducer } from './filters/reducers'
+import { addTodo, deleteTodo, Todo, toggleTodo } from './todos/actions'
+import { todoReducer } from './todos/reducers'
 
 export const reducer = combineReducers({
   todo: todoReducer,

@@ -27,15 +27,15 @@ export type TodoActionTypes = AddTodoAction | CompleteTodoAction | DeleteTodoAct
 
 export const addTodo = (text: string): AddTodoAction => ({
   type: ADD_TODO,
-  text
+  text,
 })
 
 export const toggleTodo = (id: number): CompleteTodoAction => ({
   type: TOGGLE_TODO,
-  id
+  id,
 })
 
 export const deleteTodo = (id: number): DeleteTodoAction => ({
   type: DELETE_TODO,
-  id
+  id,
 })

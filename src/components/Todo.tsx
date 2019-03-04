@@ -1,35 +1,33 @@
+import { Icon, IconButton, ListItemSecondaryAction } from '@material-ui/core'
+import Checkbox from '@material-ui/core/Checkbox'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 import React from 'react'
 import { connect } from 'react-redux'
-import { createStyles, withStyles, WithStyles, Theme } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
+import { compose } from 'redux'
 
-import { State, toggleTodo, deleteTodo } from '../store/';
-import { ListItemSecondaryAction, IconButton, Icon } from '@material-ui/core';
-
-import { compose } from 'redux';
-
+import { deleteTodo, State, toggleTodo } from '../store/'
+import { Filter } from '../store/filters/actions'
 import { DispatchType } from '../store/utils'
-import { Filter } from '../store/filters/actions';
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
     '&:checked': {
-      color: theme.palette.secondary.main
-    }
+      color: theme.palette.secondary.main,
+    },
   },
   delete: {
     color: theme.palette.grey[500],
-  }
+  },
 })
 
-interface DirectProps {
+interface IDirectProps {
   id: number
 }
 
 function display(completed: boolean, filter: Filter) {
-  switch(filter) {
+  switch (filter) {
     case Filter.All: {
       return true
     }
@@ -42,26 +40,26 @@ function display(completed: boolean, filter: Filter) {
   }
 }
 
-const mapState = (state: State, prop: DirectProps) => {
+const mapState = (state: State, prop: IDirectProps) => {
   const todo = state.todo.getId[prop.id]
 
   return {
-    todo: todo,
-    display: display(todo.completed, state.filter.filter)
+    display: display(todo.completed, state.filter.filter),
+    todo,
   }
 }
 
 const mapDispatch = {
-  toggleTodo,
   deleteTodo,
+  toggleTodo,
 }
 
 export interface Props extends WithStyles<typeof styles>,
                                ReturnType<typeof mapState>,
                                DispatchType<typeof mapDispatch>,
-                               DirectProps {}
+                               IDirectProps {}
 
-const TodoComp: React.SFC<Props> = ({ todo, id, toggleTodo, deleteTodo, classes, display }) => {
+const TodoComp: React.SFC<Props> = ({ classes, deleteTodo, display, id, todo, toggleTodo }) => {
   if (!display) {
     return null
   }
@@ -88,5 +86,5 @@ const TodoComp: React.SFC<Props> = ({ todo, id, toggleTodo, deleteTodo, classes,
 
 export default compose(
   connect(mapState, mapDispatch),
-  withStyles(styles)
+  withStyles(styles),
 )(TodoComp)

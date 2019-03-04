@@ -1,13 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
+import React from 'react'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
 
-import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 
-import { State } from '../store';
-import { Filter, setFilter } from '../store/filters/actions';
-import { DispatchType } from '../store/utils';
+import { State } from '../store'
+import { Filter, setFilter } from '../store/filters/actions'
+import { DispatchType } from '../store/utils'
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)
@@ -20,35 +20,35 @@ const styles = (theme: Theme) => {
   }
 
   return createStyles({
+    activefilterButton: {
+      ...buttonSpacing,
+      color: theme.palette.common.white,
+    },
     filterButton: {
       ...buttonSpacing,
       color: offWhite,
     },
-    activefilterButton: {
-      ...buttonSpacing,
-      color: theme.palette.common.white,
-    }
   })
 }
 
-interface DirectProps {
-  filter: Filter
+interface IDirectProps {
+  filter: Filter,
 }
 
-const mapState = (state: State, props: DirectProps) => ({
-  active: state.filter.filter === props.filter
+const mapState = (state: State, props: IDirectProps) => ({
+  active: state.filter.filter === props.filter,
 })
 
 const mapDispatch = {
-  setFilter
+  setFilter,
 }
 
-export interface Props extends WithStyles<typeof styles>,
+export interface IProps extends WithStyles<typeof styles>,
                                ReturnType<typeof mapState>,
                                DispatchType<typeof mapDispatch>,
-                               DirectProps {}
+                               IDirectProps {}
 
-const FilterButton: React.SFC<Props> = ({ classes, children, active, setFilter, filter }) => {
+const FilterButton: React.SFC<IProps> = ({ active, children, classes, filter, setFilter }) => {
   const className = active ? classes.activefilterButton : classes.filterButton
   return (
     <IconButton className={className} onClick={() => setFilter(filter)}>

@@ -1,4 +1,4 @@
-export const SET_FILTER = 'SET_FILTER';
+export const SET_FILTER = 'SET_FILTER'
 
 export enum Filter {
   All = 'All',
@@ -13,7 +13,7 @@ interface SetFilterAction {
 
 export const setFilter = (filter: Filter): SetFilterAction => ({
   type: SET_FILTER,
-  filter
+  filter,
 })
 
 export type FilterActionTypes = SetFilterAction

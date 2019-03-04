@@ -1,12 +1,12 @@
-import { DeepReadonly } from 'utility-types';
+import { DeepReadonly } from 'utility-types'
 
-import { ADD_TODO, DELETE_TODO, Todo, TodoActionTypes, TOGGLE_TODO } from './actions';
+import { ADD_TODO, DELETE_TODO, Todo, TodoActionTypes, TOGGLE_TODO } from './actions'
 
 // slighty odd Todo, but it allows O(1) mutations
 export type TodoState = DeepReadonly<{
   allIds: number[],  // all ids
   getId: { // get Todo for a specific id
-    [id: number]: Todo
+    [id: number]: Todo,
   },
   nextId: number, // next Id to use
 }>
@@ -21,24 +21,24 @@ const initialState: TodoState = {
 }
 
 export function todoReducer(
-  state=initialState,
-  action: TodoActionTypes
+  state = initialState,
+  action: TodoActionTypes,
 ): TodoState {
   const { allIds, getId, nextId } = state
-  switch(action.type) {
+  switch (action.type) {
     case ADD_TODO: {
       const newTodo: Todo = {
         id: nextId,
         text: action.text,
-        completed: false
+        completed: false,
       }
       return {
         allIds: [...allIds, nextId],
         getId: {
           ...getId,
-          [nextId]: newTodo
+          [nextId]: newTodo,
         },
-        nextId: nextId + 1
+        nextId: nextId + 1,
       }
     }
 
@@ -46,25 +46,25 @@ export function todoReducer(
       const id = action.id
       const toggledTodo: Todo = {
         ...getId[id],
-        completed: !getId[id].completed
+        completed: !getId[id].completed,
       }
       return {
         ...state,
         getId: {
           ...getId,
-          [id]: toggledTodo
-        }
+          [id]: toggledTodo,
+        },
       }
     }
 
     case DELETE_TODO: {
       const id = action.id
-      var newGetId = {...getId}
+      const newGetId = {...getId}
       delete newGetId[id]
       return {
         ...state,
-        allIds: allIds.filter(i => i !== id),
-        getId: newGetId
+        allIds: allIds.filter((i) => i !== id),
+        getId: newGetId,
       }
     }
 
