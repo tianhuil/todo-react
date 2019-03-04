@@ -70,7 +70,7 @@ const AddTodoForm: React.SFC<IProps> = ({ handleSubmit, classes, reset, addTodo 
         name='text'
         // Do not `.bind(this)` on below line: otherwise, will re-render and loose focus upon `onChange`
         component={AddInput}
-        placeholder='Add New Todo &hellip'
+        placeholder='Add New Todo &hellip;'
         classes={classes}
         />
       <IconButton aria-label='Comments' className={classes.icon} type='submit'>
