@@ -1,6 +1,6 @@
 import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core'
 import { fade } from '@material-ui/core/styles/colorManipulator'
-import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip'
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
