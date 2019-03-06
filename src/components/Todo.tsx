@@ -42,7 +42,8 @@ const mapState = (state: State, prop: IDirectProps) => {
   const todo = state.todo.getId[prop.id]
 
   return {
-    display: display(todo.completed, state.filter.status),
+    display: display(todo.completed, state.filter.status) &&
+      todo.text.toLowerCase().includes(state.filter.query.toLowerCase()),
     todo,
   }
 }
