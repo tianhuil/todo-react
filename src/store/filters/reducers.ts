@@ -20,14 +20,14 @@ export function filterReducer(
     case SET_STATUS: {
       return {
         ...state,
-        status: action.status,
+        status: action.payload.status,
       }
     }
 
     case SET_QUERY: {
       return {
         ...state,
-        query: action.query,
+        query: action.payload.query,
       }
     }
 

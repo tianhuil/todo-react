@@ -29,7 +29,7 @@ export function todoReducer(
     case ADD_TODO: {
       const newTodo: Todo = {
         id: nextId,
-        text: action.text,
+        text: action.payload.text,
         completed: false,
       }
       return {
@@ -43,7 +43,7 @@ export function todoReducer(
     }
 
     case TOGGLE_TODO: {
-      const id = action.id
+      const id = action.payload.id
       const toggledTodo: Todo = {
         ...getId[id],
         completed: !getId[id].completed,
@@ -58,7 +58,7 @@ export function todoReducer(
     }
 
     case DELETE_TODO: {
-      const id = action.id
+      const id = action.payload.id
       const newGetId = {...getId}
       delete newGetId[id]
       return {
