@@ -38,7 +38,7 @@ const mapState = (state: State) => ({
 })
 
 export interface IProps extends WithStyles<typeof styles>,
-                               ReturnType<typeof mapState> {}
+                                ReturnType<typeof mapState> {}
 
 const TodoListComp: React.SFC<IProps> = ({ classes, todoIds }) => {
   return (

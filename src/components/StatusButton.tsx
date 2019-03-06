@@ -40,9 +40,9 @@ const mapDispatch = {
 }
 
 export interface IProps extends WithStyles<typeof styles>,
-                               ReturnType<typeof mapState>,
-                               DispatchType<typeof mapDispatch>,
-                               IDirectProps {}
+                                ReturnType<typeof mapState>,
+                                DispatchType<typeof mapDispatch>,
+                                IDirectProps {}
 
 const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, setStatus }) => {
   const className = active ? classes.active : classes.root
