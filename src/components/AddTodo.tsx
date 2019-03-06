@@ -55,8 +55,8 @@ const AddInput: React.StatelessComponent<InputProps> = ({input, placeholder, cla
 )
 
 export interface IProps extends WithStyles<typeof styles>,
-                               InjectedFormProps<IFormData>,
-                               DispatchType<typeof mapDispatch> {}
+                                InjectedFormProps<IFormData>,
+                                DispatchType<typeof mapDispatch> {}
 
 const AddTodoForm: React.SFC<IProps> = ({ handleSubmit, classes, reset, addTodo }) => {
   const submit = (values: IFormData) => {
