@@ -4,6 +4,9 @@ import IconButton from '@material-ui/core/IconButton'
 import InputBase from '@material-ui/core/InputBase'
 import SearchIcon from '@material-ui/icons/Search'
 import React from 'react'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { State, setQuery, DispatchType } from '../store';
 
 const styles = (theme: Theme) => createStyles({
   search: {
@@ -34,15 +37,31 @@ const styles = (theme: Theme) => createStyles({
   },
 })
 
-export interface IProps extends WithStyles<typeof styles> {}
+const mapState = (state: State) => ({
+  query: state.filter.query
+})
 
-const QueryComp: React.SFC<IProps> = ({ classes }) => (
+const mapDispatch = {
+  setQuery
+}
+
+export interface IProps extends WithStyles<typeof styles>,
+                                ReturnType<typeof mapState>,
+                                DispatchType<typeof mapDispatch>  {}
+
+const QueryComp: React.SFC<IProps> = ({ classes, setQuery, query }) => (
   <div className={classes.search}>
-    <InputBase className={classes.searchInput} placeholder='Search&hellip;' />
+    <InputBase className={classes.searchInput}
+               placeholder='Search&hellip;'
+               value={query}
+               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)} />
     <IconButton className={classes.searchIcon} aria-label='Search'>
       <SearchIcon />
     </IconButton>
   </div>
 )
 
-export default withStyles(styles)(QueryComp)
+export default compose(
+  connect(mapState, mapDispatch),
+  withStyles(styles),
+)(QueryComp)

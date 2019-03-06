@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 
-import { setStatus, Status } from './filters/actions'
+import { setQuery, setStatus, Status } from './filters/actions'
 import { filterReducer } from './filters/reducers'
 import { addTodo, deleteTodo, Todo, toggleTodo } from './todos/actions'
 import { todoReducer } from './todos/reducers'
@@ -15,4 +15,4 @@ export const reducer = combineReducers({
 
 export type State = ReturnType<typeof reducer>
 
-export { DispatchType, addTodo, toggleTodo, deleteTodo, setStatus, Status, Todo }
+export { DispatchType, addTodo, toggleTodo, deleteTodo, setQuery, setStatus, Status, Todo }
