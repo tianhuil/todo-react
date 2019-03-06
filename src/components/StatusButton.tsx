@@ -1,13 +1,9 @@
+import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-
-import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core'
-import { fade } from '@material-ui/core/styles/colorManipulator'
-
-import { State } from '../store'
-import { Filter, setFilter } from '../store/filters/actions'
-import { DispatchType } from '../store/utils'
+import { DispatchType, setStatus, State, Status } from '../store'
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)
@@ -20,11 +16,11 @@ const styles = (theme: Theme) => {
   }
 
   return createStyles({
-    activefilterButton: {
+    active: {
       ...buttonSpacing,
       color: theme.palette.common.white,
     },
-    filterButton: {
+    root: {
       ...buttonSpacing,
       color: offWhite,
     },
@@ -32,15 +28,15 @@ const styles = (theme: Theme) => {
 }
 
 interface IDirectProps {
-  filter: Filter,
+  status: Status,
 }
 
 const mapState = (state: State, props: IDirectProps) => ({
-  active: state.filter.filter === props.filter,
+  active: state.filter.status === props.status,
 })
 
 const mapDispatch = {
-  setFilter,
+  setStatus,
 }
 
 export interface IProps extends WithStyles<typeof styles>,
@@ -48,10 +44,10 @@ export interface IProps extends WithStyles<typeof styles>,
                                DispatchType<typeof mapDispatch>,
                                IDirectProps {}
 
-const FilterButton: React.SFC<IProps> = ({ active, children, classes, filter, setFilter }) => {
-  const className = active ? classes.activefilterButton : classes.filterButton
+const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, setStatus }) => {
+  const className = active ? classes.active : classes.root
   return (
-    <IconButton className={className} onClick={() => setFilter(filter)}>
+    <IconButton className={className} onClick={() => setStatus(status)}>
       {children}
     </IconButton>
   )
@@ -60,4 +56,4 @@ const FilterButton: React.SFC<IProps> = ({ active, children, classes, filter, se
 export default compose(
   connect(mapState, mapDispatch),
   withStyles(styles),
-)(FilterButton)
+)(StatusButton)

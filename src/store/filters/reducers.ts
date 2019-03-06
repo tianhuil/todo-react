@@ -1,13 +1,13 @@
 import { DeepReadonly } from 'utility-types'
 
-import { Filter, FilterActionTypes, SET_FILTER } from './actions'
+import { FilterActionTypes, SET_STATUS, Status } from './actions'
 
 export type FilterState = DeepReadonly<{
-  filter: Filter,
+  status: Status,
 }>
 
 const initialState: FilterState = {
-  filter: Filter.All,
+  status: Status.All,
 }
 
 export function filterReducer(
@@ -15,9 +15,9 @@ export function filterReducer(
   action: FilterActionTypes,
 ): FilterState {
   switch (action.type) {
-    case SET_FILTER: {
+    case SET_STATUS: {
       return {
-        filter: action.filter,
+        status: action.status,
       }
     }
     default: {

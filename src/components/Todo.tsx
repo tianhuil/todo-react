@@ -7,9 +7,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
-import { deleteTodo, State, toggleTodo } from '../store/'
-import { Filter } from '../store/filters/actions'
-import { DispatchType } from '../store/utils'
+import { deleteTodo, DispatchType, State, Status, toggleTodo } from '../store/'
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
@@ -26,15 +24,15 @@ interface IDirectProps {
   id: number
 }
 
-function display(completed: boolean, filter: Filter) {
-  switch (filter) {
-    case Filter.All: {
+function display(completed: boolean, status: Status) {
+  switch (status) {
+    case Status.All: {
       return true
     }
-    case Filter.Completed: {
+    case Status.Completed: {
       return completed ? true : false
     }
-    case Filter.Incompleted: {
+    case Status.Incompleted: {
       return completed ? false : true
     }
   }
@@ -44,7 +42,7 @@ const mapState = (state: State, prop: IDirectProps) => {
   const todo = state.todo.getId[prop.id]
 
   return {
-    display: display(todo.completed, state.filter.filter),
+    display: display(todo.completed, state.filter.status),
     todo,
   }
 }

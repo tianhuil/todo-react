@@ -10,8 +10,8 @@ import CheckBoxOutlineBlank from '@material-ui/icons/CheckBoxOutlineBlank'
 import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox'
 import SearchIcon from '@material-ui/icons/Search'
 import React from 'react'
-import { Filter } from '../store/filters/actions'
-import FilterButton from './FilterButton'
+import { Status } from '../store/'
+import StatusButton from './StatusButton'
 
 const styles = (theme: Theme) => createStyles({
   logo: {
@@ -52,7 +52,7 @@ const styles = (theme: Theme) => createStyles({
     flexGrow: 0,
     padding: theme.spacing.unit,
   },
-  filterButtons: {
+  statusButtons: {
     display: 'flex',
     flexGrow: 1,
     justifyContent: 'flex-end',
@@ -75,16 +75,16 @@ const HeaderComp: React.SFC<IProps> = ({ classes }) => {
               <SearchIcon />
             </IconButton>
           </div>
-          <div className={classes.filterButtons}>
-          <FilterButton filter={Filter.All}>
+          <div className={classes.statusButtons}>
+          <StatusButton status={Status.All}>
               <IndeterminateCheckBox/>
-            </FilterButton>
-            <FilterButton filter={Filter.Completed}>
+            </StatusButton>
+            <StatusButton status={Status.Completed}>
               <CheckBox/>
-            </FilterButton>
-            <FilterButton filter={Filter.Incompleted}>
+            </StatusButton>
+            <StatusButton status={Status.Incompleted}>
               <CheckBoxOutlineBlank/>
-            </FilterButton>
+            </StatusButton>
           </div>
         </Toolbar>
       </AppBar>

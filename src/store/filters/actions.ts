@@ -1,19 +1,19 @@
-export const SET_FILTER = 'SET_FILTER'
+export const SET_STATUS = 'SET_STATUS'
 
-export enum Filter {
+export enum Status {
   All = 'All',
   Completed = 'Completed',
   Incompleted = 'Incompleted',
 }
 
-interface SetFilterAction {
-  type: typeof SET_FILTER,
-  filter: Filter,
+interface SetStatusAction {
+  type: typeof SET_STATUS,
+  status: Status,
 }
 
-export const setFilter = (filter: Filter): SetFilterAction => ({
-  type: SET_FILTER,
-  filter,
+export const setStatus = (status: Status): SetStatusAction => ({
+  type: SET_STATUS,
+  status,
 })
 
-export type FilterActionTypes = SetFilterAction
+export type FilterActionTypes = SetStatusAction
