@@ -1,6 +1,8 @@
 const webpack               = require('webpack'),
       HtmlWebpackPlugin     = require('html-webpack-plugin'),
       MiniCssExtractPlugin  = require("mini-css-extract-plugin");
+      BundleAnalyzerPlugin  = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 module.exports = (env, argv) => {
   var devMode = false
@@ -62,7 +64,12 @@ module.exports = (env, argv) => {
         // both options are optional
         filename: "[name].css",
         chunkFilename: "[id].css"
-      })
-    ]
+      })].concat(devMode ?
+        [
+          new BundleAnalyzerPlugin({
+            analyzerPort: 8082,
+          }),
+        ] : []
+      )
   }
 }

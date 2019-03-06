@@ -1,9 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import AppComp from './components/App'
 import './styles/index.scss'
 
-ReactDOM.render(
+render(
   <React.Fragment>
     <AppComp/>
   </React.Fragment>,
