@@ -42,19 +42,19 @@ const mapState = (state: State) => ({
 })
 
 const mapDispatch = {
-  setQuery
+  setQueryToInput: (event: React.ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)
 }
 
 export interface IProps extends WithStyles<typeof styles>,
                                 ReturnType<typeof mapState>,
                                 DispatchType<typeof mapDispatch>  {}
 
-const QueryComp: React.SFC<IProps> = ({ classes, setQuery, query }) => (
+const QueryComp: React.SFC<IProps> = ({ classes, setQueryToInput, query }) => (
   <div className={classes.search}>
     <InputBase className={classes.searchInput}
                placeholder='Search&hellip;'
                value={query}
-               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)} />
+               onChange={setQueryToInput} />
     <IconButton className={classes.searchIcon} aria-label='Search'>
       <SearchIcon />
     </IconButton>
