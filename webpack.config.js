@@ -43,12 +43,12 @@ module.exports = (env, argv) => {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
     output: {
-      path: __dirname + '/docs',
-      publicPath: '/',
+      path: __dirname + '/dist',
+      publicPath: '/todo-react/dist/',
       filename: 'bundle.js'
     },
     devServer: {
-      contentBase: './docs'
+      contentBase: './dist'
     },
     // If too slow, try eval
     devtool: devMode ? 'cheap-eval-source-map' : undefined,
