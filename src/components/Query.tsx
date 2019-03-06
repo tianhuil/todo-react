@@ -1,12 +1,12 @@
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
-import { fade } from '@material-ui/core/styles/colorManipulator'
 import IconButton from '@material-ui/core/IconButton'
 import InputBase from '@material-ui/core/InputBase'
+import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
+import { fade } from '@material-ui/core/styles/colorManipulator'
 import SearchIcon from '@material-ui/icons/Search'
 import React from 'react'
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { State, setQuery, DispatchType } from '../store';
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { DispatchType, setQuery, State } from '../store'
 
 const styles = (theme: Theme) => createStyles({
   search: {
@@ -38,11 +38,11 @@ const styles = (theme: Theme) => createStyles({
 })
 
 const mapState = (state: State) => ({
-  query: state.filter.query
+  query: state.filter.query,
 })
 
 const mapDispatch = {
-  setQueryToInput: (event: React.ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)
+  setQueryToInput: (event: React.ChangeEvent<HTMLInputElement>) => setQuery(event.target.value),
 }
 
 export interface IProps extends WithStyles<typeof styles>,

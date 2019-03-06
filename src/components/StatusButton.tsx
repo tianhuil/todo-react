@@ -1,4 +1,5 @@
-import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core'
+import IconButton from '@material-ui/core/IconButton'
+import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import Tooltip from '@material-ui/core/Tooltip'
 import React from 'react'
