@@ -49,7 +49,7 @@ export interface IProps extends WithStyles<typeof styles>,
 const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, setStatus, tooltip }) => {
   const className = active ? classes.active : classes.root
   return (
-    <Tooltip title={tooltip} aria-label={tooltip} enterDelay={200} leaveDelay={500}>
+    <Tooltip title={tooltip} aria-label={tooltip} enterDelay={500} leaveDelay={200}>
       <IconButton className={className} onClick={() => setStatus(status)}>
         {children}
       </IconButton>
