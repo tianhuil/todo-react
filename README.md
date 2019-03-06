@@ -1,6 +1,6 @@
 # Todo App in React
 
-A simple typescript todo react app.
+A simple typescript todo react app.  View Demo at [https://tianhui.li/todo-react/dist/](https://tianhui.li/todo-react/dist/).
 
 ## Getting Started
 To use the starer:
