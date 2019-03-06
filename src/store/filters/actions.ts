@@ -1,3 +1,5 @@
+import { action } from '../utils'
+
 export const SET_STATUS = 'SET_STATUS'
 export const SET_QUERY = 'SET_QUERY'
 
@@ -7,24 +9,9 @@ export enum Status {
   Incompleted = 'Incompleted',
 }
 
-interface SetStatusAction {
-  type: typeof SET_STATUS,
-  status: Status,
-}
+export const setStatus = (status: Status) => action(SET_STATUS, status)
 
-interface SetQueryAction {
-  type: typeof SET_QUERY,
-  query: string,
-}
+export const setQuery = (query: string) => action(SET_QUERY, status)
 
-export const setStatus = (status: Status): SetStatusAction => ({
-  type: SET_STATUS,
-  status,
-})
-
-export const setQuery = (query: string): SetQueryAction => ({
-  type: SET_QUERY,
-  query,
-})
-
-export type FilterActionTypes = SetStatusAction | SetQueryAction
+export type FilterActionTypes = ReturnType<typeof setStatus>
+                              | ReturnType<typeof setQuery>

@@ -1,3 +1,5 @@
+import { action } from '../utils'
+
 export interface Todo {
   id: number,
   text: string,
@@ -8,34 +10,12 @@ export const ADD_TODO = 'ADD_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
 
-interface AddTodoAction {
-  type: typeof ADD_TODO
-  text: string
-}
+export const addTodo = (text: string) => action(ADD_TODO, text)
 
-interface CompleteTodoAction {
-  type: typeof TOGGLE_TODO
-  id: number
-}
+export const toggleTodo = (id: number) => action(TOGGLE_TODO, id)
 
-interface DeleteTodoAction {
-  type: typeof DELETE_TODO
-  id: number
-}
+export const deleteTodo = (id: number) => action(DELETE_TODO, id)
 
-export type TodoActionTypes = AddTodoAction | CompleteTodoAction | DeleteTodoAction
-
-export const addTodo = (text: string): AddTodoAction => ({
-  type: ADD_TODO,
-  text,
-})
-
-export const toggleTodo = (id: number): CompleteTodoAction => ({
-  type: TOGGLE_TODO,
-  id,
-})
-
-export const deleteTodo = (id: number): DeleteTodoAction => ({
-  type: DELETE_TODO,
-  id,
-})
+export type TodoActionTypes = ReturnType<typeof addTodo>
+                            | ReturnType<typeof toggleTodo>
+                            | ReturnType<typeof deleteTodo>
