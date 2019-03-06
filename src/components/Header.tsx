@@ -44,13 +44,13 @@ const HeaderComp: React.SFC<IProps> = ({ classes }) => {
           </Typography>
           <QueryComp />
           <div className={classes.statusButtons}>
-          <StatusButton status={Status.All}>
+            <StatusButton status={Status.All} tooltip='View All'>
               <IndeterminateCheckBox/>
             </StatusButton>
-            <StatusButton status={Status.Completed}>
+            <StatusButton status={Status.Completed} tooltip='View Completed'>
               <CheckBox/>
             </StatusButton>
-            <StatusButton status={Status.Incompleted}>
+            <StatusButton status={Status.Incompleted} tooltip='View Incompleted'>
               <CheckBoxOutlineBlank/>
             </StatusButton>
           </div>

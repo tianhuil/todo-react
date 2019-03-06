@@ -1,5 +1,6 @@
 import { createStyles, IconButton, Theme, WithStyles, withStyles } from '@material-ui/core'
 import { fade } from '@material-ui/core/styles/colorManipulator'
+import Tooltip from '@material-ui/core/Tooltip';
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
@@ -29,6 +30,7 @@ const styles = (theme: Theme) => {
 
 interface IDirectProps {
   status: Status,
+  tooltip: string,
 }
 
 const mapState = (state: State, props: IDirectProps) => ({
@@ -44,12 +46,14 @@ export interface IProps extends WithStyles<typeof styles>,
                                 DispatchType<typeof mapDispatch>,
                                 IDirectProps {}
 
-const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, setStatus }) => {
+const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, setStatus, tooltip }) => {
   const className = active ? classes.active : classes.root
   return (
-    <IconButton className={className} onClick={() => setStatus(status)}>
-      {children}
-    </IconButton>
+    <Tooltip title={tooltip} aria-label={tooltip} enterDelay={200} leaveDelay={500}>
+      <IconButton className={className} onClick={() => setStatus(status)}>
+        {children}
+      </IconButton>
+    </Tooltip>
   )
 }
 
