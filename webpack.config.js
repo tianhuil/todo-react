@@ -1,7 +1,9 @@
 const webpack               = require('webpack'),
       HtmlWebpackPlugin     = require('html-webpack-plugin'),
-      MiniCssExtractPlugin  = require("mini-css-extract-plugin");
-      BundleAnalyzerPlugin  = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+      MiniCssExtractPlugin  = require("mini-css-extract-plugin"),
+      BundleAnalyzerPlugin  = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+      Visualizer            = require('webpack-visualizer-plugin'),
+      TerserPlugin          = require('terser-webpack-plugin');
 
 
 module.exports = (env, argv) => {
@@ -41,6 +43,9 @@ module.exports = (env, argv) => {
         }
       ]
     },
+    optimization: (devMode ? undefined : {
+      minimizer: [new TerserPlugin()],
+    }),
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
@@ -64,12 +69,16 @@ module.exports = (env, argv) => {
         // both options are optional
         filename: "[name].css",
         chunkFilename: "[id].css"
-      })].concat(devMode ?
-        [
-          new BundleAnalyzerPlugin({
-            analyzerPort: 8082,
-          }),
-        ] : []
-      )
+      }),
+      new Visualizer({
+        filename: './statistics.html'
+      }),
+    ].concat(devMode ?
+      [
+        new BundleAnalyzerPlugin({
+          analyzerPort: 8082,
+        }),
+      ] : []
+    )
   }
 }
