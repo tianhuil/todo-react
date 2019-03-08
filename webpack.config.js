@@ -42,9 +42,9 @@ module.exports = (env, argv) => {
         }
       ]
     },
-    optimization: (devMode ? undefined : {
-      minimizer: [new TerserPlugin()],
-    }),
+    optimization: {
+      minimize: (devMode ? undefined : true)
+    },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
