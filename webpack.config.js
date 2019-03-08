@@ -2,8 +2,7 @@ const webpack               = require('webpack'),
       HtmlWebpackPlugin     = require('html-webpack-plugin'),
       MiniCssExtractPlugin  = require("mini-css-extract-plugin"),
       BundleAnalyzerPlugin  = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
-      Visualizer            = require('webpack-visualizer-plugin'),
-      TerserPlugin          = require('terser-webpack-plugin');
+      Visualizer            = require('webpack-visualizer-plugin');
 
 
 module.exports = (env, argv) => {
