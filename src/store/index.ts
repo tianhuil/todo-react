@@ -1,18 +1,31 @@
-import { combineReducers } from 'redux'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { reducer as formReducer } from 'redux-form'
 
-import { setQuery, setStatus, Status } from './filters/actions'
-import { filterReducer } from './filters/reducers'
+import { display, mapRouterDispatch, Status } from './filter'
 import { addTodo, deleteTodo, Todo, toggleTodo } from './todos/actions'
 import { todoReducer } from './todos/reducers'
 import { DispatchType } from './utils'
 
-export const reducer = combineReducers({
+const history = createBrowserHistory()
+
+const reducer = combineReducers({
   todo: todoReducer,
   form: formReducer,
-  filter: filterReducer,
+  router: connectRouter(history),
 })
+
+const store = createStore(
+  reducer,
+  composeWithDevTools(
+    applyMiddleware(
+      routerMiddleware(history),
+    ),
+  ),
+)
 
 export type State = ReturnType<typeof reducer>
 
-export { DispatchType, addTodo, toggleTodo, deleteTodo, setQuery, setStatus, Status, Todo }
+export { DispatchType, addTodo, deleteTodo, display, toggleTodo, Status, Todo, store, history, mapRouterDispatch }

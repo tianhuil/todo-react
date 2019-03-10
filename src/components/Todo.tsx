@@ -9,7 +9,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
-import { deleteTodo, DispatchType, State, Status, toggleTodo } from '../store/'
+import { deleteTodo, DispatchType, display, State, Status, toggleTodo } from '../store/'
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
@@ -26,26 +26,11 @@ interface IDirectProps {
   id: number
 }
 
-function display(completed: boolean, status: Status) {
-  switch (status) {
-    case Status.All: {
-      return true
-    }
-    case Status.Completed: {
-      return completed ? true : false
-    }
-    case Status.Incompleted: {
-      return completed ? false : true
-    }
-  }
-}
-
 const mapState = (state: State, prop: IDirectProps) => {
   const todo = state.todo.getId[prop.id]
 
   return {
-    display: display(todo.completed, state.filter.status) &&
-      todo.text.toLowerCase().includes(state.filter.query.toLowerCase()),
+    display: display(todo.completed, state.router),
     todo,
   }
 }

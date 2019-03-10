@@ -1,20 +1,29 @@
+import { ConnectedRouter } from 'connected-react-router'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-
-import { reducer } from '../store'
+import { Redirect, Route, Switch } from 'react-router'
+import { history, Status, store } from '../store'
 import HeaderComp from './Header'
 import TodoListComp from './TodoList'
 
-const store = createStore(
-  reducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+const body = () => (
+  <React.Fragment>
+    <HeaderComp/>
+    <TodoListComp/>
+  </React.Fragment>
 )
 
-const AppComp = () => <Provider store={store}>
-  <HeaderComp/>
-  <TodoListComp/>
-</Provider>
+const AppComp = () => (
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path={Status.All} render={body} />
+        <Route path={Status.Completed} render={body} />
+        <Route path={Status.Incompleted} render={body} />
+        <Redirect to={Status.All} />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>
+)
 
 export default AppComp

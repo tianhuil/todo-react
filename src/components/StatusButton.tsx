@@ -2,10 +2,11 @@ import IconButton from '@material-ui/core/IconButton'
 import { createStyles, Theme, WithStyles, withStyles } from '@material-ui/core/styles'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import Tooltip from '@material-ui/core/Tooltip'
+
 import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { DispatchType, setStatus, State, Status } from '../store'
+import { DispatchType, mapRouterDispatch, State, Status } from '../store'
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)
@@ -35,23 +36,19 @@ interface IDirectProps {
 }
 
 const mapState = (state: State, props: IDirectProps) => ({
-  active: state.filter.status === props.status,
+  active: state.router.location.pathname === props.status,
 })
-
-const mapDispatch = {
-  setStatus,
-}
 
 export interface IProps extends WithStyles<typeof styles>,
                                 ReturnType<typeof mapState>,
-                                DispatchType<typeof mapDispatch>,
+                                DispatchType<typeof mapRouterDispatch>,
                                 IDirectProps {}
 
-const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, setStatus, tooltip }) => {
+const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, push, tooltip }) => {
   const className = active ? classes.active : classes.root
   return (
     <Tooltip title={tooltip} aria-label={tooltip} enterDelay={500} leaveDelay={200}>
-      <IconButton className={className} onClick={() => setStatus(status)}>
+      <IconButton className={className} onClick={() => push(status)}>
         {children}
       </IconButton>
     </Tooltip>
@@ -59,6 +56,6 @@ const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, se
 }
 
 export default compose(
-  connect(mapState, mapDispatch),
+  connect(mapState, mapRouterDispatch),
   withStyles(styles),
 )(StatusButton)
