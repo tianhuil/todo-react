@@ -54,7 +54,8 @@ module.exports = (env, argv) => {
       filename: 'bundle.js'
     },
     devServer: {
-      contentBase: './dist'
+      contentBase: './dist',
+      historyApiFallback: true,
     },
     // If too slow, try eval
     devtool: devMode ? 'cheap-eval-source-map' : undefined,
