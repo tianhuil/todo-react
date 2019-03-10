@@ -4,7 +4,6 @@ import { fade } from '@material-ui/core/styles/colorManipulator'
 import Tooltip from '@material-ui/core/Tooltip'
 
 import React from 'react'
-import { compose } from 'redux'
 import { Status } from '../store'
 import { filterConnector, FilterProps } from './Filter'
 
@@ -47,4 +46,5 @@ const StatusButton: React.SFC<IProps> = ({ children, classes, status, stateStatu
   )
 }
 
+// Using redux compose messes up the type signature for some reason
 export default filterConnector(withStyles(styles)(StatusButton))
