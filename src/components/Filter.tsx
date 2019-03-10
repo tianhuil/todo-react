@@ -1,5 +1,4 @@
 import { push } from 'connected-react-router'
-import { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { ThunkAction } from 'redux-thunk'
 

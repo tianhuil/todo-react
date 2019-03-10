@@ -47,7 +47,4 @@ const StatusButton: React.SFC<IProps> = ({ children, classes, status, stateStatu
   )
 }
 
-export default compose(
-  filterConnector,
-  withStyles(styles),
-)(StatusButton)
+export default filterConnector(withStyles(styles)(StatusButton))
