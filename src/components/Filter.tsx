@@ -25,10 +25,10 @@ const mapDispatch = {
   push: ({status, query}: PushObj): Action => {
     return (dispatch, getState) => {
       const { stateStatus, stateQuery } = mapState(getState())
-      const newQuery = query ? query : stateQuery
+      const newQuery = query === undefined ? stateQuery : query
       dispatch(push({
         pathname: status ? status : stateStatus as string,
-        search: `?query=${newQuery}`,
+        search: newQuery ? `?query=${newQuery}` : '',
       }))
     }
   },
