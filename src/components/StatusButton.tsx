@@ -4,9 +4,9 @@ import { fade } from '@material-ui/core/styles/colorManipulator'
 import Tooltip from '@material-ui/core/Tooltip'
 
 import React from 'react'
-import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { DispatchType, mapRouterDispatch, State, Status } from '../store'
+import { Status } from '../store'
+import { filterConnector, FilterProps } from './Filter'
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)
@@ -30,25 +30,17 @@ const styles = (theme: Theme) => {
   })
 }
 
-interface IDirectProps {
-  status: Status,
-  tooltip: string,
-}
-
-const mapState = (state: State, props: IDirectProps) => ({
-  active: state.router.location.pathname === props.status,
-})
-
 export interface IProps extends WithStyles<typeof styles>,
-                                ReturnType<typeof mapState>,
-                                DispatchType<typeof mapRouterDispatch>,
-                                IDirectProps {}
+                                FilterProps {
+                                  status: Status,
+                                  tooltip: string,
+                                }
 
-const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, push, tooltip }) => {
-  const className = active ? classes.active : classes.root
+const StatusButton: React.SFC<IProps> = ({ children, classes, status, stateStatus, push, tooltip }) => {
+  const className = (stateStatus === status) ? classes.active : classes.root
   return (
     <Tooltip title={tooltip} aria-label={tooltip} enterDelay={500} leaveDelay={200}>
-      <IconButton className={className} onClick={() => push(status)}>
+      <IconButton className={className} onClick={() => push({status})}>
         {children}
       </IconButton>
     </Tooltip>
@@ -56,6 +48,6 @@ const StatusButton: React.SFC<IProps> = ({ active, children, classes, status, pu
 }
 
 export default compose(
-  connect(mapState, mapRouterDispatch),
+  filterConnector,
   withStyles(styles),
 )(StatusButton)
