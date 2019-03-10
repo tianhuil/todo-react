@@ -17,9 +17,9 @@ const AppComp = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route path={Status.All} render={body} />
-        <Route path={Status.Completed} render={body} />
-        <Route path={Status.Incompleted} render={body} />
+        <Route exact path={Status.All} render={body} />
+        <Route exact path={Status.Completed} render={body} />
+        <Route exact path={Status.Incompleted} render={body} />
         <Redirect to={Status.All} />
       </Switch>
     </ConnectedRouter>
