@@ -64,3 +64,4 @@ typings/
 .vscode
 
 webpack-stats.json
+dist/statistics.html
