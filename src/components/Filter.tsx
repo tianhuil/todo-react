@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router'
-import { Dispatch } from 'react';
+import { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { ThunkAction } from 'redux-thunk'
 
@@ -16,7 +16,10 @@ const mapState = (state: State) => {
 }
 
 type Action = ThunkAction<void, State, {}, ReturnType<typeof push>>
-type PushObj = {status?: Status, query?: string}
+interface PushObj {
+  status?: Status
+  query?: string
+}
 
 const mapDispatch = {
   push: ({status, query}: PushObj): Action => {
@@ -28,7 +31,7 @@ const mapDispatch = {
         search: `?query=${newQuery}`,
       }))
     }
-  }
+  },
 }
 
 export const filterConnector = connect(mapState, mapDispatch)
