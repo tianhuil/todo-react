@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { ThunkAction } from 'redux-thunk'
 
 import { State, Status } from '../store'
+import { DispatchType } from '../store'
 
 const mapState = (state: State) => {
   const pathname = state.router.location.pathname
@@ -34,6 +35,5 @@ const mapDispatch = {
 }
 
 export const filterConnector = connect(mapState, mapDispatch)
-export interface FilterProps extends ReturnType<typeof mapState> {
-  push: (_: PushObj) => void
-}
+export interface FilterProps extends ReturnType<typeof mapState>,
+                                     DispatchType<typeof mapDispatch> {}
