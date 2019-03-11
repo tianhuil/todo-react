@@ -4,7 +4,6 @@ import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/s
 import React from 'react'
 import { compose } from 'redux'
 
-import { State } from '../store/'
 import AddTodoComp from './AddTodo'
 import { todoConnector, TodoProps } from './connectors/todo'
 import TodoComp from './Todo'
@@ -31,10 +30,6 @@ const styles = (theme: Theme) => createStyles({
       width: 600,
     },
   },
-})
-
-const mapState = (state: State) => ({
-  todoIds: state.todo.allIds,
 })
 
 export interface IProps extends WithStyles<typeof styles>,
