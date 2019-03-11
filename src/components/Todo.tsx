@@ -6,11 +6,9 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListItemText from '@material-ui/core/ListItemText'
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 import React from 'react'
-import { connect } from 'react-redux'
-import { compose } from 'redux'
 
-import { deleteTodo, DispatchType, State, toggleTodo } from '../store/'
 import { filterConnector, FilterProps } from './connectors/filter'
+import { todoConnector, TodoProps } from './connectors/todo'
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
@@ -27,26 +25,14 @@ interface IDirectProps {
   id: number
 }
 
-const mapState = (state: State, prop: IDirectProps) => {
-  const todo = state.todo.getId[prop.id]
-
-  return {
-    todo,
-  }
-}
-
-const mapDispatch = {
-  deleteTodo,
-  toggleTodo,
-}
-
 export interface Props extends WithStyles<typeof styles>,
-                               ReturnType<typeof mapState>,
-                               DispatchType<typeof mapDispatch>,
+                               TodoProps,
                                FilterProps,
                                IDirectProps {}
 
-const TodoComp: React.SFC<Props> = ({ classes, deleteTodo, display, id, todo, toggleTodo }) => {
+const TodoComp: React.SFC<Props> = ({ classes, deleteTodo, display, id, todoById, toggleTodo }) => {
+  const todo = todoById(id)
+
   if (!display(todo.completed, todo.text)) {
     return null
   }
@@ -71,8 +57,5 @@ const TodoComp: React.SFC<Props> = ({ classes, deleteTodo, display, id, todo, to
   )
 }
 
-export default compose(
-  connect(mapState, mapDispatch),
-  filterConnector,
-  withStyles(styles),
-)(TodoComp)
+// Using redux compose messes up the type signature for some reason
+export default todoConnector(filterConnector(withStyles(styles)(TodoComp)))

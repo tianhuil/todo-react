@@ -2,11 +2,11 @@ import List from '@material-ui/core/List'
 import Paper from '@material-ui/core/Paper'
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 import React from 'react'
-import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 import { State } from '../store/'
 import AddTodoComp from './AddTodo'
+import { todoConnector, TodoProps } from './connectors/todo'
 import TodoComp from './Todo'
 
 const styles = (theme: Theme) => createStyles({
@@ -38,7 +38,7 @@ const mapState = (state: State) => ({
 })
 
 export interface IProps extends WithStyles<typeof styles>,
-                                ReturnType<typeof mapState> {}
+                                TodoProps {}
 
 const TodoListComp: React.SFC<IProps> = ({ classes, todoIds }) => {
   return (
@@ -54,6 +54,6 @@ const TodoListComp: React.SFC<IProps> = ({ classes, todoIds }) => {
 }
 
 export default compose(
-  connect(mapState),
+  todoConnector,
   withStyles(styles),
 )(TodoListComp)

@@ -3,12 +3,10 @@ import IconButton from '@material-ui/core/IconButton'
 import Input from '@material-ui/core/Input'
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 import React from 'react'
-import { connect } from 'react-redux'
 import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from 'redux-form'
 
 import { compose } from 'redux'
-import { addTodo } from '../store/'
-import { DispatchType } from '../store/utils'
+import { todoConnector, TodoProps } from './connectors/todo'
 
 const styles = (theme: Theme) => createStyles({
   root: {
@@ -38,10 +36,6 @@ const styles = (theme: Theme) => createStyles({
   },
 })
 
-const mapDispatch = {
-  addTodo,
-}
-
 interface IFormData {
   text: string
 }
@@ -56,7 +50,7 @@ const AddInput: React.StatelessComponent<InputProps> = ({input, placeholder, cla
 
 export interface IProps extends WithStyles<typeof styles>,
                                 InjectedFormProps<IFormData>,
-                                DispatchType<typeof mapDispatch> {}
+                                TodoProps {}
 
 const AddTodoForm: React.SFC<IProps> = ({ handleSubmit, classes, reset, addTodo }) => {
   const submit = (values: IFormData) => {
@@ -84,6 +78,6 @@ const AddTodoForm: React.SFC<IProps> = ({ handleSubmit, classes, reset, addTodo 
 
 export default compose(
   reduxForm({form: 'add'}),
-  connect(null, mapDispatch),
+  todoConnector,
   withStyles(styles),
 )(AddTodoForm)
