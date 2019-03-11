@@ -5,10 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 
-import { Status } from './filter'
 import { addTodo, deleteTodo, Todo, toggleTodo } from './todos/actions'
 import { todoReducer } from './todos/reducers'
-import { DispatchType } from './utils'
+import { DispatchType, Status } from './utils'
 
 const history = createBrowserHistory()
 
