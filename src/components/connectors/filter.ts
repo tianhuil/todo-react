@@ -7,11 +7,25 @@ import { DispatchType } from '../../store'
 
 const mapState = (state: State) => {
   const pathname = state.router.location.pathname
+  const stateStatus = (Object.values(Status).includes(pathname)) ? (pathname as Status) : Status.All
   const maybeQuery = new URLSearchParams(state.router.location.search).get('query')
 
   return {
-    stateStatus: (pathname in Status) ? (pathname as Status) : Status.All,
+    stateStatus,
     stateQuery: maybeQuery ? maybeQuery : '',
+    display(completed: boolean, text: string) {
+      switch (stateStatus) {
+        case Status.All: {
+          return true
+        }
+        case Status.Completed: {
+          return completed ? true : false
+        }
+        case Status.Incompleted: {
+          return completed ? false : true
+        }
+      }
+    },
   }
 }
 

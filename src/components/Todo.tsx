@@ -9,7 +9,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
-import { deleteTodo, DispatchType, display, State, toggleTodo } from '../store/'
+import { deleteTodo, DispatchType, State, toggleTodo } from '../store/'
+import { filterConnector, FilterProps } from './connectors/filter'
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {
@@ -30,7 +31,6 @@ const mapState = (state: State, prop: IDirectProps) => {
   const todo = state.todo.getId[prop.id]
 
   return {
-    display: display(todo.completed, state.router),
     todo,
   }
 }
@@ -43,10 +43,11 @@ const mapDispatch = {
 export interface Props extends WithStyles<typeof styles>,
                                ReturnType<typeof mapState>,
                                DispatchType<typeof mapDispatch>,
+                               FilterProps,
                                IDirectProps {}
 
 const TodoComp: React.SFC<Props> = ({ classes, deleteTodo, display, id, todo, toggleTodo }) => {
-  if (!display) {
+  if (!display(todo.completed, todo.text)) {
     return null
   }
 
@@ -72,5 +73,6 @@ const TodoComp: React.SFC<Props> = ({ classes, deleteTodo, display, id, todo, to
 
 export default compose(
   connect(mapState, mapDispatch),
+  filterConnector,
   withStyles(styles),
 )(TodoComp)
