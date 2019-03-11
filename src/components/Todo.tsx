@@ -9,7 +9,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
-import { deleteTodo, DispatchType, display, State, Status, toggleTodo } from '../store/'
+import { deleteTodo, DispatchType, display, State, toggleTodo } from '../store/'
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {

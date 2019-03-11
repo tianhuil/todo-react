@@ -2,8 +2,8 @@ import { push } from 'connected-react-router'
 import { connect } from 'react-redux'
 import { ThunkAction } from 'redux-thunk'
 
-import { State, Status } from '../store'
-import { DispatchType } from '../store'
+import { State, Status } from '../../store'
+import { DispatchType } from '../../store'
 
 const mapState = (state: State) => {
   const pathname = state.router.location.pathname
