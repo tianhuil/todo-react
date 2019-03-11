@@ -4,6 +4,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator'
 import Tooltip from '@material-ui/core/Tooltip'
 
 import React from 'react'
+
 import { Status } from '../store'
 import { filterConnector, FilterProps } from './connectors/filter'
 
@@ -29,13 +30,16 @@ const styles = (theme: Theme) => {
   })
 }
 
-export interface IProps extends WithStyles<typeof styles>,
-                                FilterProps {
-                                  status: Status,
-                                  tooltip: string,
-                                }
+export interface DirectProps {
+  status: Status,
+  tooltip: string,
+}
 
-const StatusButton: React.SFC<IProps> = ({ children, classes, status, stateStatus, push, tooltip }) => {
+export interface IProps extends WithStyles<typeof styles>,
+                                FilterProps,
+                                DirectProps {}
+
+const StatusButton_: React.SFC<IProps> = ({ children, classes, status, stateStatus, push, tooltip }) => {
   const className = (stateStatus === status) ? classes.active : classes.root
   return (
     <Tooltip title={tooltip} aria-label={tooltip} enterDelay={500} leaveDelay={200}>
@@ -47,4 +51,4 @@ const StatusButton: React.SFC<IProps> = ({ children, classes, status, stateStatu
 }
 
 // Using redux compose messes up the type signature for some reason
-export default filterConnector(withStyles(styles)(StatusButton))
+export default filterConnector(withStyles(styles)(StatusButton_))

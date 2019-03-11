@@ -2,6 +2,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router'
+
 import { history, Status, store } from '../store'
 import HeaderComp from './Header'
 import TodoListComp from './TodoList'

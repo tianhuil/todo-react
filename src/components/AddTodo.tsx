@@ -3,9 +3,9 @@ import IconButton from '@material-ui/core/IconButton'
 import Input from '@material-ui/core/Input'
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 import React from 'react'
+import { compose } from 'redux'
 import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from 'redux-form'
 
-import { compose } from 'redux'
 import { todoConnector, TodoProps } from './connectors/todo'
 
 const styles = (theme: Theme) => createStyles({

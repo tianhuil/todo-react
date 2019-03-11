@@ -5,6 +5,7 @@ import { fade } from '@material-ui/core/styles/colorManipulator'
 import SearchIcon from '@material-ui/icons/Search'
 import React from 'react'
 import { compose } from 'redux'
+
 import { filterConnector, FilterProps } from './connectors/filter'
 
 const styles = (theme: Theme) => createStyles({
