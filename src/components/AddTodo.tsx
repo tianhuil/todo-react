@@ -6,7 +6,7 @@ import React from 'react'
 import { compose } from 'redux'
 import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from 'redux-form'
 
-import { todoConnector, TodoProps } from './connectors/todo'
+import { todoConnector, TodoProps } from '../connectors/todo'
 
 const styles = (theme: Theme) => createStyles({
   root: {

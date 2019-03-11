@@ -7,8 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText'
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 import React from 'react'
 
-import { filterConnector, FilterProps } from './connectors/filter'
-import { todoConnector, TodoProps } from './connectors/todo'
+import { filterConnector, FilterProps } from '../connectors/filter'
+import { todoConnector, TodoProps } from '../connectors/todo'
 
 const styles = (theme: Theme) => createStyles({
   checkbox: {

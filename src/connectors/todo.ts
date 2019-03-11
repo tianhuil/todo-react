@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
-import { addTodo, deleteTodo, State, toggleTodo } from '../../store/'
-import { DispatchType } from '../../store/utils'
+import { addTodo, deleteTodo, State, toggleTodo } from '../store/'
+import { DispatchType } from '../store/utils'
 
 const mapState = (state: State) => {
   return {

@@ -5,8 +5,8 @@ import Tooltip from '@material-ui/core/Tooltip'
 
 import React from 'react'
 
+import { filterConnector, FilterProps } from '../connectors/filter'
 import { Status } from '../store'
-import { filterConnector, FilterProps } from './connectors/filter'
 
 const styles = (theme: Theme) => {
   const offWhite = fade(theme.palette.common.white, 0.5)
