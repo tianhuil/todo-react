@@ -9,23 +9,32 @@ const mapState = (state: State) => {
   const pathname = state.router.location.pathname
   const stateStatus = (Object.values(Status).includes(pathname)) ? (pathname as Status) : Status.All
   const maybeQuery = new URLSearchParams(state.router.location.search).get('query')
+  const stateQuery = maybeQuery ? maybeQuery : ''
+
+  const displayStatus = (completed: boolean) => {
+    switch (stateStatus) {
+      case Status.All: {
+        return true
+      }
+      case Status.Completed: {
+        return completed ? true : false
+      }
+      case Status.Incompleted: {
+        return completed ? false : true
+      }
+    }
+  }
+
+  const displayQuery = (text: string) => (
+    text.toLowerCase().includes(stateQuery.toLowerCase())
+  )
 
   return {
     stateStatus,
-    stateQuery: maybeQuery ? maybeQuery : '',
-    display(completed: boolean, text: string) {
-      switch (stateStatus) {
-        case Status.All: {
-          return true
-        }
-        case Status.Completed: {
-          return completed ? true : false
-        }
-        case Status.Incompleted: {
-          return completed ? false : true
-        }
-      }
-    },
+    stateQuery,
+    display: (completed: boolean, text: string) => (
+      displayStatus(completed) && displayQuery(text)
+    ),
   }
 }
 
