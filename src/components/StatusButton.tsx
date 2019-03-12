@@ -39,7 +39,7 @@ export interface IProps extends WithStyles<typeof styles>,
                                 FilterProps,
                                 DirectProps {}
 
-const StatusButton_: React.SFC<IProps> = ({ children, classes, status, stateStatus, push, tooltip }) => {
+const RawStatusButton: React.SFC<IProps> = ({ children, classes, status, stateStatus, push, tooltip }) => {
   const className = (stateStatus === status) ? classes.active : classes.root
   return (
     <Tooltip title={tooltip} aria-label={tooltip} enterDelay={500} leaveDelay={200}>
@@ -51,4 +51,4 @@ const StatusButton_: React.SFC<IProps> = ({ children, classes, status, stateStat
 }
 
 // Using redux compose messes up the type signature for some reason
-export default filterConnector(withStyles(styles)(StatusButton_))
+export default filterConnector(withStyles(styles)(RawStatusButton))
