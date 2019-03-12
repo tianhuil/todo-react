@@ -1,5 +1,6 @@
 import { push } from 'connected-react-router'
-import { connect } from 'react-redux'
+import { ComponentType } from 'react'
+import { connect, InferableComponentEnhancerWithProps } from 'react-redux'
 import { ThunkAction } from 'redux-thunk'
 
 import { State, Status } from '../store'
@@ -57,6 +58,9 @@ const mapDispatch = {
   },
 }
 
-export const filterConnector = connect(mapState, mapDispatch)
 export interface FilterProps extends ReturnType<typeof mapState>,
                                      DispatchType<typeof mapDispatch> {}
+
+export function filterConnector<T extends object>(c: ComponentType<T & FilterProps>): InferableComponentEnhancerWithProps<FilterProps, T> {
+  return connect(mapState, mapDispatch)(c)
+}
