@@ -73,12 +73,9 @@ module.exports = (env, argv) => {
       new Visualizer({
         filename: './statistics.html'
       }),
-    ].concat(devMode ?
-      [
-        new BundleAnalyzerPlugin({
-          analyzerPort: 8082,
-        }),
-      ] : []
-    )
+      new BundleAnalyzerPlugin({
+        analyzerPort: 8082,
+      }),
+    ]
   }
 }
