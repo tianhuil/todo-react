@@ -2,7 +2,6 @@ import { connectRouter, routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { reducer as formReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 
 import { addTodo, deleteTodo, Todo, toggleTodo } from './todos/actions'
@@ -13,7 +12,6 @@ const history = createBrowserHistory()
 
 const reducer = combineReducers({
   todo: todoReducer,
-  form: formReducer,
   router: connectRouter(history),
 })
 

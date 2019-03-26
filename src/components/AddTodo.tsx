@@ -2,9 +2,8 @@ import Icon from '@material-ui/core/Icon'
 import IconButton from '@material-ui/core/IconButton'
 import Input from '@material-ui/core/Input'
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles'
-import React from 'react'
+import React, { useRef } from 'react'
 import { compose } from 'redux'
-import { Field, InjectedFormProps, reduxForm, WrappedFieldProps } from 'redux-form'
 
 import { todoConnector, TodoProps } from '../connectors/todo'
 
@@ -36,37 +35,25 @@ const styles = (theme: Theme) => createStyles({
   },
 })
 
-interface IFormData {
-  text: string
-}
-
-type InputProps = WrappedFieldProps & WithStyles<typeof styles> & {
-  placeholder: string,
-}
-
-const AddInput: React.StatelessComponent<InputProps> = ({input, placeholder, classes}) => (
-  <Input {...input} placeholder={placeholder} className={classes.input} />
-)
-
 export interface IProps extends WithStyles<typeof styles>,
-                                InjectedFormProps<IFormData>,
                                 TodoProps {}
 
-const AddTodoForm: React.SFC<IProps> = ({ handleSubmit, classes, reset, addTodo }) => {
-  const submit = (values: IFormData) => {
-    addTodo(values.text)
-    reset()
+const AddTodoForm: React.SFC<IProps> = ({ classes, addTodo }) => {
+  const inputRef = useRef({value: ''})
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    addTodo(inputRef.current.value)
+    inputRef.current.value = ''
   }
 
   return (
-    <form className={classes.root} onSubmit={handleSubmit(submit)}>
-      <Field
-        name='text'
-        // Do not `.bind(this)` on below line: otherwise, will re-render and loose focus upon `onChange`
-        component={AddInput}
-        placeholder='Add New Todo &hellip;'
-        classes={classes}
-        />
+    <form className={classes.root} onSubmit={handleSubmit}>
+      <Input name='text'
+             type='text'
+             inputRef={inputRef}
+             placeholder='Add New Todo &hellip;'
+             className={classes.input} />
       <IconButton aria-label='Comments' className={classes.icon} type='submit'>
         <Icon color='primary'>
           add_circle
@@ -77,7 +64,6 @@ const AddTodoForm: React.SFC<IProps> = ({ handleSubmit, classes, reset, addTodo 
 }
 
 export default compose(
-  reduxForm({form: 'add'}),
   todoConnector,
   withStyles(styles),
 )(AddTodoForm)
