@@ -2,7 +2,7 @@
   "defaultSeverity": "error",
   "extends": [
     "tslint:recommended",
-    "tslint-react-hooks",
+    "tslint-react-hooks"
   ],
   "jsRules": {},
   "rules": {
