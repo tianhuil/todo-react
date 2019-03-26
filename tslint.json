@@ -1,6 +1,9 @@
 {
   "defaultSeverity": "error",
-  "extends": "tslint:recommended",
+  "extends": [
+    "tslint:recommended",
+    "tslint-react-hooks",
+  ],
   "jsRules": {},
   "rules": {
     "quotemark": [true, "single", "jsx-single", "avoid-escape", "avoid-template"],
@@ -9,6 +12,7 @@
     "object-literal-sort-keys": false,
     "semicolon": [true, "never"],
     "import": false,
+    "react-hooks-nesting": "error",
     "no-shadowed-variable": [
       true,
       {
