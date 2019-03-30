@@ -39,12 +39,14 @@ export interface IProps extends WithStyles<typeof styles>,
                                 TodoProps {}
 
 const AddTodoForm: React.SFC<IProps> = ({ classes, addTodo }) => {
-  const inputRef = useRef({value: ''})
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    addTodo(inputRef.current.value)
-    inputRef.current.value = ''
+    if (inputRef && inputRef.current) {
+      addTodo(inputRef.current.value)
+      inputRef.current.value = ''
+    }
   }
 
   return (
