@@ -14,8 +14,8 @@ const Body = () => (
   </React.Fragment>
 )
 
-const AppComp = () => (
-  <Provider store={store}>
+const AppComp = () => {
+  return <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
         <Route exact path={Status.All} render={Body} />
@@ -25,6 +25,6 @@ const AppComp = () => (
       </Switch>
     </ConnectedRouter>
   </Provider>
-)
+}
 
 export default AppComp
