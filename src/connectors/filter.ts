@@ -1,4 +1,5 @@
 import { push } from 'connected-react-router'
+import { ComponentType } from 'react'
 import { connect } from 'react-redux'
 import { ThunkAction } from 'redux-thunk'
 
@@ -57,6 +58,9 @@ const mapDispatch = {
   },
 }
 
-export const filterConnector = connect(mapState, mapDispatch)
 export interface FilterProps extends ReturnType<typeof mapState>,
                                      DispatchType<typeof mapDispatch> {}
+
+export function filterConnector<T extends object>(c: ComponentType<T & FilterProps>) {
+  return connect<ReturnType<typeof mapState>, DispatchType<typeof mapDispatch>, T, State>(mapState, mapDispatch)(c)
+}
